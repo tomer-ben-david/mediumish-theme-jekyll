@@ -1,4 +1,14 @@
- Security
+---
+title:  "Security Primer"
+date:   2018-03-13 05:18:00
+subtitle: "Basic Authentication, SAML, Identity Provider, Service Provider, JWT, OAuth, SSO and friends"
+categories: db
+permalink: git-primer
+comments: true
+header-img: "img/post-bg-01.jpg"
+---
+
+Security
 
 # Basic
 
