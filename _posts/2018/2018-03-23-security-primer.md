@@ -6,7 +6,7 @@ categories: db
 permalink: git-primer
 comments: true
 featured: true
-header-img: "img/post-bg-01.jpg"
+header-img: "https://media.giphy.com/media/YN6qUXj4HdXoY/giphy.gif"
 ---
 
 Security
