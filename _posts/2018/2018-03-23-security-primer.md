@@ -5,6 +5,7 @@ subtitle: "Basic Authentication, SAML, Identity Provider, Service Provider, JWT,
 categories: db
 permalink: git-primer
 comments: true
+featured: true
 header-img: "img/post-bg-01.jpg"
 ---
 
