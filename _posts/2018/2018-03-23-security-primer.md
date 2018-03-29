@@ -8,6 +8,7 @@ comments: true
 featured: true
 image: https://media.giphy.com/media/YN6qUXj4HdXoY/giphy.gif
 ---
+Basic Authentication, SAML, Identity Provider, Service Provider, JWT, OAuth, SSO and friends
 
 Security
 
