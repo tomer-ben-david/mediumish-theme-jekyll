@@ -1,33 +1,25 @@
 # Site
-name: Mediumish
-description: Jekyll Template for Blogging
-meta_description: "Jekyll template, Medium styled, free for bloggers."
+name: Tomer Ben David on Programming
+description: What I learned last week on programming
+meta_description: "What I learned last week on programming."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 paginate: 15
 baseurl: /tomer-ben-david-mediumish
-google_analytics: 'UA-46278016-1'
-disqus: 'demowebsite'
-mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
+google_analytics: 'UA-1448968-8'
+disqus: 'tomer-ben-david-github-io'
+mailchimp-list: 'https://github.us16.list-manage.com/subscribe/post?u=eb784ee630e214e34a5f9ad9d&amp;id=a1404f4703'
 
 # Authors
 authors:
   sal:
-    name: Sal
-    display_name: Sal
+    name: Tomer
+    display_name: Tomer
     gravatar: e56154546cf4be74e393c62d1ae9f9d4
-    email: wowthemesnet@gmail.com
-    web: https://www.wowthemes.net
-    twitter: https://twitter.com/wowthemesnet
+    email: tomerbd1@gmail.com
+    web: https://tomer-ben-david.github.io
+    twitter: https://twitter.com/tomerbd1
     description: "Author of Mediumish, a Bootstrap Medium styled template available for WordPress, HTML, Ghost and Jekyll. You are currently previewing Jekyll template demo."
-  john:
-    name: John
-    display_name: John
-    gravatar: b1cc14991db7a456fcd761680bbc8f81
-    email: wowthemesnet@gmail.com
-    web: https://www.wowthemes.net
-    twitter: https://twitter.com/wowthemesnet
-    description: "This is the author box. Write a short description of the author here. You are currently previewing Mediumish demo, a Jekyll template compatible with Github pages."
 
 # Plugins
 plugins: 

@@ -3,7 +3,7 @@
 <node TEXT="Int" FOLDED="false" ID="ID_222677983" CREATED="1521894973387" MODIFIED="1521895055849" STYLE="oval">
 <font SIZE="18"/>
 <hook NAME="MapStyle">
-    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" fit_to_viewport="false" show_note_icons="true"/>
+    <properties fit_to_viewport="false" show_note_icons="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
@@ -63,7 +63,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="1" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="2" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="BFS" POSITION="right" ID="ID_1928311982" CREATED="1521894985833" MODIFIED="1521895089918">
 <edge COLOR="#ff0000"/>
 <richcontent TYPE="NOTE">
@@ -117,7 +117,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="queue" ID="ID_667698150" CREATED="1521894997014" MODIFIED="1521894998423">
 <node TEXT="insert root" ID="ID_807772717" CREATED="1521895103728" MODIFIED="1521895105467">
@@ -127,6 +126,23 @@
 </node>
 </node>
 </node>
+</node>
+<node TEXT="BTree" POSITION="left" ID="ID_1711635831" CREATED="1522393090723" MODIFIED="1522393184247">
+<edge COLOR="#0000ff"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span charset="utf-8" style="color: rgb(33, 33, 33); font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; word-spacing: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none"><font color="rgb(33, 33, 33)" face="Helvetica Neue, Helvetica, Arial, sans-serif" size="13px">In computer science, a&#160;B-tree&#160;is a self-balancing tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. The&#160;B-tree&#160;is a generalization of a binary search tree in that a node can have more than two children. ![btree](http://www.virtualmachinery.com/images/tree.gif)</font></span>
+    </p>
+  </body>
+</html>
+
+</richcontent>
 </node>
 </node>
 </map>
