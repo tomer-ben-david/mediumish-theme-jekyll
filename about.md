@@ -8,4 +8,8 @@ comments: true
 
 **2018**
 
-- **[akka-couchbase-persistence](https://github.com/Product-Foundry/akka-persistence-couchbase)**: add support for couchbase authentication. [PR22](https://github.com/Product-Foundry/akka-persistence-couchbase/pull/22)
+- **[https://github.com/Product-Foundry/akka-persistence-couchbase](https://github.com/Product-Foundry/akka-persistence-couchbase)**: add support for couchbase authentication. [PR22](https://github.com/Product-Foundry/akka-persistence-couchbase/pull/22)
+
+**2017**
+
+- **[https://www.npmjs.com/package/scalable-logger](https://www.npmjs.com/package/scalable-logger)**
