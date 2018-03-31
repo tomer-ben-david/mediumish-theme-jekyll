@@ -3,7 +3,7 @@
 <node TEXT="Machine Learning" FOLDED="false" ID="ID_1044113325" CREATED="1521813972653" MODIFIED="1521813980150" STYLE="oval">
 <font SIZE="18"/>
 <hook NAME="MapStyle">
-    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" fit_to_viewport="false" show_note_icons="true"/>
+    <properties fit_to_viewport="false" show_note_icons="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
@@ -78,7 +78,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Matrix" ID="ID_893609976" CREATED="1521826523147" MODIFIED="1521826546958"><richcontent TYPE="NOTE">
@@ -93,7 +92,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="sparse matrix" ID="ID_1427982606" CREATED="1521831541369" MODIFIED="1521831569709"><richcontent TYPE="NOTE">
 
@@ -107,7 +105,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -127,7 +124,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="programming" ID="ID_943717202" CREATED="1521814154074" MODIFIED="1521814163666"><richcontent TYPE="NOTE">
@@ -142,7 +138,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="parametric" ID="ID_1080829433" CREATED="1521814226137" MODIFIED="1521814254944"><richcontent TYPE="NOTE">
@@ -157,7 +152,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="non parametric" ID="ID_1962434970" CREATED="1521814263340" MODIFIED="1521814275246"><richcontent TYPE="NOTE">
@@ -172,7 +166,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="supervised" ID="ID_1682849311" CREATED="1521819076479" MODIFIED="1521819090474"><richcontent TYPE="NOTE">
@@ -187,7 +180,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="unsupervised" ID="ID_678066697" CREATED="1521826338704" MODIFIED="1521826354486"><richcontent TYPE="NOTE">
@@ -202,7 +194,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Semi supervised" ID="ID_889779785" CREATED="1521826363733" MODIFIED="1521826383346"><richcontent TYPE="NOTE">
@@ -217,7 +208,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Classification vs Regression" ID="ID_1734599570" CREATED="1521831570893" MODIFIED="1521831587110"><richcontent TYPE="NOTE">
@@ -232,7 +222,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -249,7 +238,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Bias Variance" ID="ID_867447832" CREATED="1521826396504" MODIFIED="1521826410969"><richcontent TYPE="NOTE">
@@ -264,7 +252,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Overfitting" ID="ID_1480403303" CREATED="1521826418921" MODIFIED="1521826430336"><richcontent TYPE="NOTE">
@@ -279,7 +266,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -312,7 +298,6 @@
     </ol>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="map" ID="ID_366790116" CREATED="1521815162908" MODIFIED="1521999696943"><richcontent TYPE="NOTE">
 
@@ -326,7 +311,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="reduce" ID="ID_654046329" CREATED="1521815204094" MODIFIED="1521999703680"><richcontent TYPE="NOTE">
@@ -341,14 +325,13 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
 <node TEXT="spark" POSITION="left" ID="ID_12932126" CREATED="1521819482787" MODIFIED="1521819486271">
 <edge COLOR="#ff00ff"/>
 <node TEXT="libraries" ID="ID_115886144" CREATED="1521825741647" MODIFIED="1521825743413">
-<node TEXT="graphx" ID="ID_1442075497" CREATED="1521820149378" MODIFIED="1521820167429"><richcontent TYPE="NOTE">
+<node TEXT="graphx" ID="ID_1442075497" CREATED="1521820149378" MODIFIED="1522515755214"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -360,7 +343,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -384,7 +366,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="scheme" ID="ID_1287838538" CREATED="1521825846171" MODIFIED="1521825886125"><richcontent TYPE="NOTE">
 
@@ -398,7 +379,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -424,7 +404,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="run" ID="ID_13395780" CREATED="1521897794317" MODIFIED="1521898050723"><richcontent TYPE="NOTE">
@@ -448,7 +427,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="hdfs" ID="ID_1763749311" CREATED="1521898131189" MODIFIED="1521898182840"><richcontent TYPE="NOTE">
@@ -472,7 +450,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -490,7 +467,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="Stochastic Gradiant Descent" ID="ID_952743102" CREATED="1521826500157" MODIFIED="1521999725715"><richcontent TYPE="NOTE">
 
@@ -504,11 +480,7 @@
     </p>
   </body>
 </html>
-
 </richcontent>
-<node TEXT="sdkhjskdfhsjdf&#xa;skfksflskflksfj&#xa;sdlkjfsklfjksljf&#xa;sdkjfhskjfhjskhfd&#xa;sdkjfhdskjfhjk" ID="ID_750709804" CREATED="1521867989640" MODIFIED="1521868077136">
-<edge STYLE="hide_edge"/>
-</node>
 </node>
 </node>
 </node>
@@ -526,7 +498,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="from source" ID="ID_1334061015" CREATED="1521828764810" MODIFIED="1521830474750"><richcontent TYPE="NOTE">
 
@@ -543,7 +514,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="core-site.xml" ID="ID_1905530992" CREATED="1521829494537" MODIFIED="1521830434337"><richcontent TYPE="NOTE">
@@ -558,7 +528,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="hdfs-site.xml" ID="ID_11525604" CREATED="1521830434777" MODIFIED="1521830494092"><richcontent TYPE="NOTE">
@@ -573,7 +542,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="format hdfs" ID="ID_342693020" CREATED="1521830596592" MODIFIED="1521830631312"><richcontent TYPE="NOTE">
@@ -600,7 +568,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="start" ID="ID_1317026566" CREATED="1521830862338" MODIFIED="1521831008292"><richcontent TYPE="NOTE">
@@ -633,7 +600,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="create hdfs folders" ID="ID_1368935367" CREATED="1521831069499" MODIFIED="1521831136096"><richcontent TYPE="NOTE">
@@ -648,7 +614,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="start yarn" ID="ID_1923300614" CREATED="1521831137799" MODIFIED="1521831265618"><richcontent TYPE="NOTE">
@@ -681,7 +646,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -699,12 +663,25 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
 <node TEXT="yarn" ID="ID_695952373" CREATED="1521831341114" MODIFIED="1521831343025">
-<node TEXT="http://localhost:8088" ID="ID_1812778622" CREATED="1521831343426" MODIFIED="1521831378416" LINK="http://localhost:8088"/>
+<node TEXT="http://localhost:8088" ID="ID_1812778622" CREATED="1521831343426" MODIFIED="1522522722965" LINK="http://localhost:8088"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      as a local file system
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 </node>
 <node TEXT="run test" ID="ID_1845386134" CREATED="1521831424821" MODIFIED="1521831426495">
@@ -720,10 +697,10 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
+<node TEXT="hdfs" ID="ID_1222839698" CREATED="1522515836980" MODIFIED="1522515839776">
 <node TEXT="roles" ID="ID_544030945" CREATED="1521909597166" MODIFIED="1521909598336">
 <node TEXT="namenode" ID="ID_66513195" CREATED="1521909600661" MODIFIED="1521909730974"><richcontent TYPE="NOTE">
 
@@ -737,10 +714,72 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="datanode" ID="ID_1419371298" CREATED="1521909609952" MODIFIED="1521909612457"/>
+<node TEXT="hdfs-client" ID="ID_66899961" CREATED="1522515916991" MODIFIED="1522515919786">
+<node TEXT="calls namenode then datanode" ID="ID_182467871" CREATED="1522515920057" MODIFIED="1522515954685"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      you do operations on hdfsClient it's doing all the work of communicating with namenodes and then sending the operations to the correct data nodes.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="commands" ID="ID_1078564526" CREATED="1522520829342" MODIFIED="1522520836012">
+<node TEXT="hdfs dfsadmin -report" ID="ID_1186809256" CREATED="1522520836553" MODIFIED="1522520843111"/>
+<node TEXT="dfs -put file.txt" ID="ID_1803047519" CREATED="1522521026610" MODIFIED="1522521050371"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      hdfs dfs -put war-and-peace.txt
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="dfs -cp file1.txt file2.txt" ID="ID_643344569" CREATED="1522521769331" MODIFIED="1522521796117"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      copy a file inside hdfs
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="mount hdfs /mnt/hdfs" ID="ID_1343562901" CREATED="1522522694508" MODIFIED="1522522705278"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      as a local file system!
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="programming" ID="ID_1218874801" CREATED="1522522920292" MODIFIED="1522522926240"/>
 </node>
 </node>
 <node TEXT="hive" POSITION="right" ID="ID_229919236" CREATED="1521870026287" MODIFIED="1521870028694">
@@ -757,7 +796,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="derby" ID="ID_1393258955" CREATED="1521871544717" MODIFIED="1521871571567"><richcontent TYPE="NOTE">
 
@@ -771,7 +809,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -799,7 +836,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="data pipelines" ID="ID_1553840734" CREATED="1521883677960" MODIFIED="1522004981173"><richcontent TYPE="NOTE">
@@ -814,7 +850,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="kinesis" ID="ID_304124178" CREATED="1521890182378" MODIFIED="1521890190638"><richcontent TYPE="NOTE">
@@ -829,7 +864,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -845,7 +879,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="process" ID="ID_857493939" CREATED="1522005709079" MODIFIED="1522005754775"><richcontent TYPE="NOTE">
@@ -869,7 +902,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
