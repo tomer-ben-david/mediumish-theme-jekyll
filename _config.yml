@@ -5,7 +5,10 @@ meta_description: "What I learned last week on programming."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 paginate: 15
-baseurl: /tomer-ben-david-mediumish
+
+url                      : https://tomer-ben-david.github.io
+baseurl                  : mediumish
+baseurl: /tomer-ben-david
 google_analytics: 'UA-1448968-8'
 disqus: 'tomer-ben-david-github-io'
 mailchimp-list: 'https://github.us16.list-manage.com/subscribe/post?u=eb784ee630e214e34a5f9ad9d&amp;id=a1404f4703'
