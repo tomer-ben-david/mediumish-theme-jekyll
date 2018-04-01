@@ -63,7 +63,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="8" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="9" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="data" POSITION="right" ID="ID_1580962771" CREATED="1521814074501" MODIFIED="1521814092945">
 <edge COLOR="#ff0000"/>
 <node TEXT="spreadsheet" ID="ID_784430210" CREATED="1521814078005" MODIFIED="1521814109603"><richcontent TYPE="NOTE">
@@ -903,6 +903,41 @@
   </body>
 </html>
 </richcontent>
+</node>
+</node>
+<node TEXT="python" POSITION="right" ID="ID_821721802" CREATED="1522557133588" MODIFIED="1522557135158">
+<edge COLOR="#7c007c"/>
+<node TEXT="urllib2" ID="ID_1131020682" CREATED="1522557135703" MODIFIED="1522557150945">
+<node TEXT="getfile" ID="ID_1491224189" CREATED="1522557152792" MODIFIED="1522557340770"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```python
+    </p>
+    <p>
+      import urllib.request
+    </p>
+    <p>
+      url = &quot;http://www.cs.tufts.edu/comp/116/access.log&quot;
+    </p>
+    <p>
+      accesslog =&#160;&#160;urllib.request.urlopen(url).read().decode('utf-8')
+    </p>
+    <p>
+      print(&quot;accesslog: &quot; + accesslog)
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 </node>
 </node>
