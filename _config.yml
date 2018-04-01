@@ -7,7 +7,7 @@ favicon: 'assets/images/logo.png'
 paginate: 15
 
 url                      : https://tomer-ben-david.github.io
-baseurl                  : mediumish
+baseurl                  : tomer-ben-david-mediumish
 baseurl: /tomer-ben-david
 google_analytics: 'UA-1448968-8'
 disqus: 'tomer-ben-david-github-io'
