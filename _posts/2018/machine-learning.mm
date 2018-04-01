@@ -679,7 +679,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -715,6 +714,55 @@
   </body>
 </html>
 </richcontent>
+<node TEXT="inmemory" ID="ID_748990528" CREATED="1522571934767" MODIFIED="1522571995443"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      stores HDFS metadata in memory at startup reads it fro file `fsimage`. Writes added to logfile on startup it merges the log with fsimage.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="secondary namenode" ID="ID_314362974" CREATED="1522572085425" MODIFIED="1522572088190">
+<node TEXT="bad title" ID="ID_323801512" CREATED="1522572088389" MODIFIED="1522572092292">
+<node TEXT="checkpoint node" ID="ID_1594552460" CREATED="1522572101305" MODIFIED="1522572141440"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      better named checkpoint node because it's merging the fsimage to the edits log while the namenode is running so startup will be fast.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="backup node" ID="ID_391543057" CREATED="1522572186268" MODIFIED="1522572228805"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      same work as checkpoint node but is synchronized to namenode using real time stream from the namenode.&#160;&#160;Still no redundancy with this.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 <node TEXT="datanode" ID="ID_1419371298" CREATED="1521909609952" MODIFIED="1521909612457"/>
 <node TEXT="hdfs-client" ID="ID_66899961" CREATED="1522515916991" MODIFIED="1522515919786">
@@ -779,7 +827,183 @@
 </richcontent>
 </node>
 </node>
-<node TEXT="programming" ID="ID_1218874801" CREATED="1522522920292" MODIFIED="1522522926240"/>
+<node TEXT="programming" ID="ID_1218874801" CREATED="1522522920292" MODIFIED="1522522926240">
+<node TEXT="java" ID="ID_1798933618" CREATED="1522570404470" MODIFIED="1522570872402"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```java
+    </p>
+    <p>
+      import org.apache.hadoop.fs.FileSystem // just same api as java file system.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Configuration conf = new Configuration();
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      conf.addResource(new Path(&quot;/etc/hadoop/conf/core-site.xml&quot;);
+    </p>
+    <p>
+      conf.addResource(new Path(&quot;/etc/hadoop/conf/hdfs-site.xml&quot;);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      FileSystem fileSystem = FileSystem.get(conf);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      fileSystem.exists(&quot;/users/tomer/test.txt&quot;);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      // Create new file and write data to it.
+    </p>
+    <p>
+      FSDataOutputStream out = fileSystem.create(path);
+    </p>
+    <p>
+      InputStream in = new BufferedInputStream(new FileInputStream(
+    </p>
+    <p>
+      &#160;&#160;new File(source)));
+    </p>
+    <p>
+      int numBytes = 0;
+    </p>
+    <p>
+      while ((numBytes = in.read(b)) &gt; 0) {
+    </p>
+    <p>
+      &#160;&#160;out.write(b, 0, numBytes);
+    </p>
+    <p>
+      }
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="compile" ID="ID_269256866" CREATED="1522570943063" MODIFIED="1522571392913"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```bash
+    </p>
+    <p>
+      echo &quot;Main-Class: org/myorg.HDFSClient&quot; &gt; manifest.txt
+    </p>
+    <p>
+      javac -classpath /usr/lib/hadoop/hadoop-core.jar -d HDSFClient -classes HDFSClient.java # =&gt; Note we needed to include hadoop core jar.
+    </p>
+    <p>
+      jar -cvfe HDFSClient.jar org/myorg.HDFSClient -C HDFSClient-classes/ .
+    </p>
+    <p>
+      hadoop jar ./HDFSClient.jar add sometextfile.txt /user/tomer # =&gt; run with program arguments.
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="classpath" ID="ID_127660297" CREATED="1522571725430" MODIFIED="1522571737541"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      export CLASSPATH=$(hadoop classpath)
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="HA" ID="ID_1396430806" CREATED="1522572545116" MODIFIED="1522572547165">
+<node TEXT="namenode" ID="ID_406972725" CREATED="1522572555343" MODIFIED="1522572556634">
+<node TEXT="standby namenode" ID="ID_886862131" CREATED="1522572267813" MODIFIED="1522572365977"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      acting like checkpoint node so it has the fsimage file, it will take over in case of failure.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="federation" ID="ID_1725970039" CREATED="1522572428394" MODIFIED="1522572458676"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Break namespace across all namespace
+    </p>
+    <p>
+      namenode1: /research/marketing
+    </p>
+    <p>
+      namenode2: /data/project
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="snapshots" ID="ID_1062086116" CREATED="1522572580222" MODIFIED="1522572715116"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      read onliy point-in-time copies of the file system.&#160;&#160;can be of subtree.&#160; it's not data no data copied only block list and file size.&#160;&#160;Think of snapshot of a file directory.&#160;&#160;can do this on daily basis does not slow things down.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+</node>
 </node>
 </node>
 <node TEXT="hive" POSITION="right" ID="ID_229919236" CREATED="1521870026287" MODIFIED="1521870028694">
@@ -935,7 +1159,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
