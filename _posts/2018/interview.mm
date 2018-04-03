@@ -63,7 +63,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="2" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="5" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="BFS" POSITION="right" ID="ID_1928311982" CREATED="1521894985833" MODIFIED="1521895089918">
 <edge COLOR="#ff0000"/>
 <richcontent TYPE="NOTE">
@@ -141,8 +141,144 @@
     </p>
   </body>
 </html>
+</richcontent>
+</node>
+<node TEXT="infix" POSITION="right" ID="ID_445322872" CREATED="1522735960958" MODIFIED="1522735990165">
+<edge COLOR="#00ff00"/>
+<node TEXT="postfix/prefix" ID="ID_409320205" CREATED="1522736447845" MODIFIED="1522736450166">
+<node TEXT="convert to postfix/prefix" ID="ID_1644882608" CREATED="1522735990825" MODIFIED="1522736320732"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      postfix and prefix do not need parenthasis
+    </p>
+    <p>
+      A + B * C =&gt; B C * +
+    </p>
+    <p>
+      to convert: operands stay in same relative places, only operators change positions.
+    </p>
+  </body>
+</html>
 
 </richcontent>
+<node TEXT="no need parenthasis" ID="ID_525362810" CREATED="1522736001654" MODIFIED="1522736006822"/>
+</node>
+<node TEXT="evaluate" ID="ID_1334563084" CREATED="1522736455335" MODIFIED="1522736495291"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      push operands as long as we have operands once we have operator pop 2 operands and run operation on them.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="resources" POSITION="left" ID="ID_89437070" CREATED="1522736133414" MODIFIED="1522736134946">
+<edge COLOR="#ff00ff"/>
+<node TEXT="Problem solving with algorithms and data structures" ID="ID_881837044" CREATED="1522736135305" MODIFIED="1522736166722"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      online concise python book
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+<node TEXT="java" POSITION="right" ID="ID_1460961291" CREATED="1522739843146" MODIFIED="1522739844378">
+<edge COLOR="#00ffff"/>
+<node TEXT="concurrent" ID="ID_1259963423" CREATED="1522739845586" MODIFIED="1522739860278">
+<node TEXT="delayed operation" ID="ID_1581463902" CREATED="1522739860618" MODIFIED="1522739928206"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```java
+    </p>
+    <p>
+      Scheduler scheduler = Executors.newSingleThreadScheduledExecutor()
+    </p>
+    <p>
+      scheduler.schedule(new Runnable() {
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;override def run(): Unit = {
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Some Code
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;}
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;}, 1, TimeUnit.SECONDS)
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+<node TEXT="URLConnection" ID="ID_1643053678" CREATED="1522754294560" MODIFIED="1522754313083"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```java
+    </p>
+    <p>
+      URL url = new URL(&quot;http://example.com&quot;);
+    </p>
+    <p>
+      HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+    </p>
+    <p>
+      connection.setRequestMethod(&quot;GET&quot;);
+    </p>
+    <p>
+      connection.connect();
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      int code = connection.getResponseCode();
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 </node>
 </map>
