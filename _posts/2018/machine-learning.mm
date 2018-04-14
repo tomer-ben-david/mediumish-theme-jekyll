@@ -381,6 +381,308 @@
 </html>
 </richcontent>
 </node>
+<node TEXT="read json element" ID="ID_439730399" CREATED="1523173749610" MODIFIED="1523173766180"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```scala
+    </p>
+    <p>
+      object SparkDFOnlineJson extends App {
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;override def main(args: Array[String]): Unit = {
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;val jsonString = scala.io.Source.fromURL(&quot;https://min-api.cryptocompare.com/data/histoday?fsym=BTC&amp;tsym=ETH&amp;limit=30&amp;aggregate=1&amp;e=CCCAGG&quot;).mkString
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;val spark = org.apache.spark.sql.SparkSession.builder().appName(&quot;someapp&quot;).master(&quot;local[*]&quot;).getOrCreate()
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;import spark.implicits._
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;import org.apache.spark.sql.functions._
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;val df = spark.read.json(Seq(jsonString).toDS())
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;df.show()
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;df.take(10).foreach(println)
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;df.printSchema()
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;df.select($&quot;Data.close&quot;.as(&quot;close_price&quot;)).show(2) // &lt;-- HERE reading Data.close from the json!
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;val jsonExplodedDF = df.select($&quot;Aggregated&quot;, $&quot;ConversionType&quot;, explode($&quot;Data&quot;).as(&quot;prices&quot;)) // &lt;-- HERE reading Data.close from the json!
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;jsonExplodedDF.printSchema()
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;jsonExplodedDF.select($&quot;Aggregated&quot;, $&quot;ConversionType&quot;, $&quot;prices&quot;.getItem(&quot;close&quot;)).show(10) // Then getItem instead of explode to objects!!
+    </p>
+    <p>
+      &#160;&#160;}
+    </p>
+    <p>
+      }
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      // +----------+--------------+--------------------+-----------------+--------+----------+----------+----+
+    </p>
+    <p>
+      // |Aggregated|ConversionType|&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Data|FirstValueInArray|Response|&#160;&#160;TimeFrom|&#160;&#160;&#160;&#160;TimeTo|Type|
+    </p>
+    <p>
+      // +----------+--------------+--------------------+-----------------+--------+----------+----------+----+
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|[[23.91,25.06,21....|&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;true| Success|1513209600|1515801600| 100|
+    </p>
+    <p>
+      // +----------+--------------+--------------------+-----------------+--------+----------+----------+----+
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      // [false,[,invert],WrappedArray([23.91,25.06,21.87,23.39,1513209600,62691.53,1452942.54], [25.87,29.03,23.88,23.91,1513296000,50825.4,1342967.63], [28.11,28.62,24.53,25.87,1513382400,38155.01,1013078.48], [26.72,28.11,25.93,28.11,1513468800,36242.76,979762.25], [24.08,26.86,23.29,26.72,1513555200,46712.69,1186390.62], [21.63,24.41,21.29,24.08,1513641600,65125.17,1449434.45], [20.67,22.29,20.42,21.63,1513728000,64539.45,1372742.27], [19.79,20.94,19.4,20.67,1513814400,61802.62,1244602.57], [20.93,21.98,19.47,19.79,1513900800,80230.91,1656134.49], [20.78,20.97,20.42,20.93,1513987200,42893.35,887428.82], [20.53,20.97,20.36,20.77,1514073600,41294.18,855012.67], [19.18,20.53,18.67,20.53,1514160000,48165.25,929653.57], [20.91,21.55,18.75,19.18,1514246400,46999.33,956924.92], [20.88,21.57,20.45,20.91,1514332800,36759.37,769083.49], [20.04,20.95,19.7,20.88,1514419200,40883.16,828193.82], [19.58,20.25,19.32,20.04,1514505600,43487.34,857520.42], [18.14,19.77,18.09,19.58,1514592000,66161.84,1246949.13], [18.68,19.07,18.05,18.14,1514678400,48718.02,902419.05], [17.76,18.7,17.54,18.67,1514764800,50703.72,910875.63], [17.16,18.94,15.25,17.76,1514851200,96092.61,1574640.02], [16.01,17.68,15.62,17.16,1514937600,75289.68,1266911.61], [16.06,16.59,14.43,16.03,1515024000,80755.25,1258516.2], [17.59,18.29,14.54,16.07,1515110400,104693.19,1682729.53], [17.03,17.91,16.25,17.59,1515196800,58014.94,975679.49], [14.49,17.06,14.47,17.03,1515283200,64620.79,994739.35], [13.2,14.5,12.73,14.49,1515369600,102880.99,1380565.72], [11.18,13.21,10.93,13.2,1515456000,95751.66,1168583.78], [11.95,12.06,10.16,11.18,1515542400,143351.13,1546032.52], [11.66,11.96,10.93,11.95,1515628800,97380.62,1100658.4], [10.96,11.8,10.89,11.66,1515715200,63382.56,710582.11], [10.27,11.12,10.24,10.96,1515801600,58214.24,625184.97]),true,Success,1513209600,1515801600,100]
+    </p>
+    <p>
+      // root
+    </p>
+    <p>
+      //&#160;&#160;|-- Aggregated: boolean (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- ConversionType: struct (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- conversionSymbol: string (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- type: string (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- Data: array (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- element: struct (containsNull = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;&#160;&#160;|-- close: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;&#160;&#160;|-- high: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;&#160;&#160;|-- low: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;&#160;&#160;|-- open: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;&#160;&#160;|-- time: long (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;&#160;&#160;|-- volumefrom: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;&#160;&#160;|-- volumeto: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- FirstValueInArray: boolean (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- Response: string (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- TimeFrom: long (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- TimeTo: long (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- Type: long (nullable = true)
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      // +--------------------+
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;close_price|
+    </p>
+    <p>
+      // +--------------------+
+    </p>
+    <p>
+      // |[23.91, 25.87, 28...|
+    </p>
+    <p>
+      // +--------------------+
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      // root
+    </p>
+    <p>
+      //&#160;&#160;|-- Aggregated: boolean (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- ConversionType: struct (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- conversionSymbol: string (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- type: string (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|-- prices: struct (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- close: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- high: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- low: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- open: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- time: long (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- volumefrom: double (nullable = true)
+    </p>
+    <p>
+      //&#160;&#160;|&#160;&#160;&#160;&#160;|-- volumeto: double (nullable = true)
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      // +----------+--------------+------------+
+    </p>
+    <p>
+      // |Aggregated|ConversionType|prices.close|
+    </p>
+    <p>
+      // +----------+--------------+------------+
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;23.91|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;25.87|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;28.11|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;26.72|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;24.08|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;21.63|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;20.67|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;19.79|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;20.93|
+    </p>
+    <p>
+      // |&#160;&#160;&#160;&#160;&#160;false|&#160;&#160;&#160;&#160;&#160;[,invert]|&#160;&#160;&#160;&#160;&#160;&#160;&#160;20.78|
+    </p>
+    <p>
+      // +----------+--------------+------------+
+    </p>
+    <p>
+      // only showing top 10 rows
+    </p>
+    <p>
+      &#160;
+    </p>
+    <p>
+      // jsonString: String = {&quot;Response&quot;:&quot;Success&quot;,&quot;Type&quot;:100,&quot;Aggregated&quot;:false,&quot;Data&quot;:[{&quot;time&quot;:1513209600,&quot;high&quot;:25.06,&quot;low&quot;:21.87,&quot;open&quot;:23.39,&quot;volumefrom&quot;:62691.53,&quot;volumeto&quot;:1452942.54,&quot;close&quot;:23.91},{&quot;time&quot;:1513296000,&quot;high&quot;:29.03,&quot;low&quot;:23.88,&quot;open&quot;:23.91,&quot;volumefrom&quot;:50825.4,&quot;volumeto&quot;:1342967.63,&quot;close&quot;:25.87},{&quot;time&quot;:1513382400,&quot;high&quot;:28.62,&quot;low&quot;:24.53,&quot;open&quot;:25.87,&quot;volumefrom&quot;:38155.01,&quot;volumeto&quot;:1013078.48,&quot;close&quot;:28.11},{&quot;time&quot;:1513468800,&quot;high&quot;:28.11,&quot;low&quot;:25.93,&quot;open&quot;:28.11,&quot;volumefrom&quot;:36242.76,&quot;volumeto&quot;:979762.25,&quot;close&quot;:26.72},{&quot;time&quot;:1513555200,&quot;high&quot;:26.86,&quot;low&quot;:23.29,&quot;open&quot;:26.72,&quot;volumefrom&quot;:46712.69,&quot;volumeto&quot;:1186390.62,&quot;close&quot;:24.08},{&quot;time&quot;:1513641600,&quot;high&quot;:24.41,&quot;low&quot;:21.29,&quot;open&quot;:24.08,&quot;volumefrom&quot;:65125.17,&quot;volumeto&quot;:1449434.45,&quot;close&quot;:21.63},{&quot;time&quot;:1513728000,&quot;high&quot;:22.29,&quot;low&quot;:20.42,&quot;open&quot;:21.63,&quot;volumefrom&quot;:64539.45,&quot;volumeto&quot;:1372742.27,&quot;close&quot;:20.67},{&quot;time&quot;:1513814400,&quot;high&quot;:20.94,&quot;low&quot;:19.4,&quot;open&quot;:20.67,&quot;volumefrom&quot;:61802.62,&quot;volumeto&quot;:1244602.57,&quot;close&quot;:19.79},{&quot;time&quot;:1513900800,&quot;high&quot;:21.98,&quot;low&quot;:19.47,&quot;open&quot;:19.79,&quot;volumefrom&quot;:80230.91,&quot;volumeto&quot;:1656134.49,&quot;close&quot;:20.93},{&quot;time&quot;:1513987200,&quot;high&quot;:20.97,&quot;low&quot;:20.42,&quot;open&quot;:20.93,&quot;volumefrom&quot;:42893.35,&quot;volumeto&quot;:887428.82,&quot;close&quot;:20.78},{&quot;time&quot;:1514073600,&quot;high&quot;:20.97,&quot;low&quot;:20.36,&quot;open&quot;:20.77,&quot;volumefrom&quot;:41294.18,&quot;volumeto&quot;:855012.67,&quot;close&quot;:20.53},{&quot;time&quot;:1514160000,&quot;high&quot;:20.53,&quot;low&quot;:18.67,&quot;open&quot;:20.53,&quot;volumefrom&quot;:48165.25,&quot;volumeto&quot;:929653.57,&quot;close&quot;:19.18},{&quot;time&quot;:1514246400,&quot;high&quot;:21.55,&quot;low&quot;:18.75,&quot;open&quot;:19.18,&quot;volumefrom&quot;:46999.33,&quot;volumeto&quot;:956924.92,&quot;close&quot;:20.91},{&quot;time&quot;:1514332800,&quot;high&quot;:21.57,&quot;low&quot;:20.45,&quot;open&quot;:20.91,&quot;volumefrom&quot;:36759.37,&quot;volumeto&quot;:769083.49,&quot;close&quot;:20.88},{&quot;time&quot;:1514419200,&quot;high&quot;:20.95,&quot;low&quot;:19.7,&quot;open&quot;:20.88,&quot;volumefrom&quot;:40883.16,&quot;volumeto&quot;:828193.82,&quot;close&quot;:20.04},{&quot;time&quot;:1514505600,&quot;high&quot;:20.25,&quot;low&quot;:19.32,&quot;open&quot;:20.04,&quot;volumefrom&quot;:43487.34,&quot;volumeto&quot;:857520.42,&quot;close&quot;:19.58},{&quot;time&quot;:1514592000,&quot;high&quot;:19.77,&quot;low&quot;:18.09,&quot;open&quot;:19.58,&quot;volumefrom&quot;:66161.84,&quot;volumeto&quot;:1246949.13,&quot;close&quot;:18.14},{&quot;time&quot;:1514678400,&quot;high&quot;:19.07,&quot;low&quot;:18.05,&quot;open&quot;:18.14,&quot;volumefrom&quot;:48718.02,&quot;volumeto&quot;:902419.05,&quot;close&quot;:18.68},{&quot;time&quot;:1514764800,&quot;high&quot;:18.7,&quot;low&quot;:17.54,&quot;open&quot;:18.67,&quot;volumefrom&quot;:50703.72,&quot;volumeto&quot;:910875.63,&quot;close&quot;:17.76},{&quot;time&quot;:1514851200,&quot;high&quot;:18.94,&quot;low&quot;:15.25,&quot;open&quot;:17.76,&quot;volumefrom&quot;:96092.61,&quot;volumeto&quot;:1574640.02,&quot;close&quot;:17.16},{&quot;time&quot;:1514937600,&quot;high&quot;:17.68,&quot;low&quot;:15.62,&quot;open&quot;:17.16,&quot;volumefrom&quot;:75289.68,&quot;volumeto&quot;:1266911.61,&quot;close&quot;:16.01},{&quot;time&quot;:1515024000,&quot;high&quot;:16.59,&quot;low&quot;:14.43,&quot;open&quot;:16.03,&quot;volumefrom&quot;:80755.25,&quot;volumeto&quot;:1258516.2,&quot;close&quot;:16.06},{&quot;time&quot;:1515110400,&quot;high&quot;:18.29,&quot;low&quot;:14.54,&quot;open&quot;:16.07,&quot;volumefrom&quot;:104693.19,&quot;volumeto&quot;:1682729.53,&quot;close&quot;:17.59},{&quot;time&quot;:1515196800,&quot;high&quot;:17.91,&quot;low&quot;:16.25,&quot;open&quot;:17.59,&quot;volumefrom&quot;:58014.94,&quot;volumeto&quot;:975679.49,&quot;close&quot;:17.03},{&quot;time&quot;:1515283200,&quot;high&quot;:17.06,&quot;low&quot;:14.47,&quot;open&quot;:17.03,&quot;volumefrom&quot;:64620.79,&quot;volumeto&quot;:994739.35,&quot;close&quot;:14.49},{&quot;time&quot;:1515369600,&quot;high&quot;:14.5,&quot;low&quot;:12.73,&quot;open&quot;:14.49,&quot;volumefrom&quot;:102880.99,&quot;volumeto&quot;:1380565.72,&quot;close&quot;:13.2},{&quot;time&quot;:1515456000,&quot;high&quot;:13.21,&quot;low&quot;:10.93,&quot;open&quot;:13.2,&quot;volumefrom&quot;:95751.66,&quot;volumeto&quot;:1168583.78,&quot;close&quot;:11.18},{&quot;time&quot;:1515542400,&quot;high&quot;:12.06,&quot;low&quot;:10.16,&quot;open&quot;:11.18,&quot;volumefrom&quot;:143351.13,&quot;volumeto&quot;:1546032.52,&quot;close&quot;:11.95},{&quot;time&quot;:1515628800,&quot;high&quot;:11.96,&quot;low&quot;:10.93,&quot;open&quot;:11.95,&quot;volumefrom&quot;:97380.62,&quot;volumeto&quot;:1100658.4,&quot;close&quot;:11.66},{&quot;time&quot;:1515715200,&quot;high&quot;:11.8,&quot;low&quot;:10.89,&quot;open&quot;:11.66,&quot;volumefrom&quot;:63382.56,&quot;volumeto&quot;:710582.11,&quot;close&quot;:10.96},{&quot;time&quot;:1515801600,&quot;high&quot;:11.12,&quot;low&quot;:10.24,&quot;open&quot;:10.96,&quot;volumefrom&quot;:58214.24,&quot;volumeto&quot;:625184.97,&quot;close&quot;:10.27}],&quot;TimeTo&quot;:1515801600,&quot;TimeFrom&quot;:1513209600,&quot;FirstValueInArray&quot;:true,&quot;ConversionType&quot;:{&quot;type&quot;:&quot;invert&quot;,&quot;conversionSymbol&quot;:&quot;&quot;}}
+    </p>
+    <p>
+      // spark: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@3fb8bf89
+    </p>
+    <p>
+      // import spark.implicits._
+    </p>
+    <p>
+      // import org.apache.spark.sql.functions._
+    </p>
+    <p>
+      // df: org.apache.spark.sql.DataFrame = [Aggregated: boolean, ConversionType: struct&lt;conversionSymbol: string, type: string&gt; ... 6 more fields]
+    </p>
+    <p>
+      // jsonExplodedDF: org.apache.spark.sql.DataFrame = [Aggregated: boolean, ConversionType: struct&lt;conversionSymbol: string, type: string&gt; ... 1 more field]
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 </node>
 <node TEXT="fast" ID="ID_1651458055" CREATED="1521825902849" MODIFIED="1521826084882"><richcontent TYPE="NOTE">
@@ -682,6 +984,9 @@
 </richcontent>
 </node>
 </node>
+<node TEXT="jobtracker" ID="ID_1991580657" CREATED="1523631425399" MODIFIED="1523631427065">
+<node TEXT="http://headnode:50030" ID="ID_347438443" CREATED="1523631429512" MODIFIED="1523631468061"/>
+</node>
 </node>
 <node TEXT="run test" ID="ID_1845386134" CREATED="1521831424821" MODIFIED="1521831426495">
 <node TEXT="yarn jar somejob.jar args" ID="ID_389941881" CREATED="1521831434750" MODIFIED="1521831474317"><richcontent TYPE="NOTE">
@@ -726,7 +1031,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="secondary namenode" ID="ID_314362974" CREATED="1522572085425" MODIFIED="1522572088190">
@@ -743,7 +1047,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -760,7 +1063,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -900,7 +1202,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="compile" ID="ID_269256866" CREATED="1522570943063" MODIFIED="1522571392913"><richcontent TYPE="NOTE">
 
@@ -929,10 +1230,11 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
-<node TEXT="classpath" ID="ID_127660297" CREATED="1522571725430" MODIFIED="1522571737541"><richcontent TYPE="NOTE">
+<node TEXT="classpath" ID="ID_127660297" CREATED="1522571725430" MODIFIED="1523385408740">
+<icon BUILTIN="full-1"/>
+<richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -944,7 +1246,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -963,7 +1264,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="federation" ID="ID_1725970039" CREATED="1522572428394" MODIFIED="1522572458676"><richcontent TYPE="NOTE">
@@ -984,7 +1284,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="snapshots" ID="ID_1062086116" CREATED="1522572580222" MODIFIED="1522572715116"><richcontent TYPE="NOTE">
@@ -999,11 +1298,268 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
 </node>
+<node TEXT="misc" ID="ID_1953565358" CREATED="1523301322641" MODIFIED="1523301324931">
+<node TEXT="nfsv3" ID="ID_1881195147" CREATED="1523301325347" MODIFIED="1523301355868"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      NFS gateway allows you to access hdfs as if it's a local file system, its still not random access but it's convinient.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="host:5700" ID="ID_1606675233" CREATED="1523301399639" MODIFIED="1523301440472"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      web gui for nfs is at http://host:5700
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="debug" ID="ID_507455842" CREATED="1523633765097" MODIFIED="1523633766671">
+<node TEXT="/var/log/hadoop" ID="ID_1251426774" CREATED="1523633768147" MODIFIED="1523633860594"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      these are the logs on the headnode you can also ssh to worker nodes and similarly look at /var/log/hadoop/mapred you will see there the task tracker logs.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="kill" ID="ID_337070816" CREATED="1523633952189" MODIFIED="1523634026478"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```bash
+    </p>
+    <p>
+      hadoop job -list
+    </p>
+    <p>
+      hadoop job -kill job_2016982347928_0042
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="map reduce" ID="ID_73465860" CREATED="1523301675993" MODIFIED="1523603542774"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      map =&gt; banana,1
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;banana, 1
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;banana, 1
+    </p>
+    <p>
+      reduce =&gt; banana, 3
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="grep | wc -l" ID="ID_965326037" CREATED="1523301696537" MODIFIED="1523301732751"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      `grep &quot;Samuel&quot; somebook.txt | wc -l`
+    </p>
+    <p>
+      grep =&gt; map
+    </p>
+    <p>
+      wc -l =&gt; reduce
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="helloworld" ID="ID_1132705096" CREATED="1523386848857" MODIFIED="1523388707024"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      mapper: string tokenizer, emit (word, 1), reduce, sum+= values, in addition you write the &quot;driver&quot;, going to run the mapper and reducer, you say which class is mapper conf.setMapperClass(MapClass.class); you also do conf.setCombinerClass and setReducerClass.
+    </p>
+    <p>
+      `hadoop jar wordcount.jar org.myorg.WordCount /user/myuser/inputdir /user/myuser/outputdir`
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="shuffle" ID="ID_1514553229" CREATED="1523603543380" MODIFIED="1523606946246"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      shuffle is the only step where we have communication transfer of data between nodes.
+    </p>
+    <p>
+      ![shuffle](https://www.todaysoftmag.com/images/articles/tsm33/large/a11.png)
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="reduce" ID="ID_735109799" CREATED="1523603814033" MODIFIED="1523603852288"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      can run on multiple hosts, depending on shuffle, shuffle puts same keys on same hosts, so reduce can work on grouping of same keys and he will know he has all the same keys on the same hosts.
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="combiner" ID="ID_1599419712" CREATED="1523606621199" MODIFIED="1523606707068"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      instead of mapper saying i found earth,1 and earth,1 compiner will have the mapper report earth,2 from a certain node, optimizing the mapper so the reducer has less work.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="streaming" ID="ID_1994313940" CREATED="1523620660892" MODIFIED="1523621417129"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      **Streaming interface for hadoop jobs**
+    </p>
+    <p>
+      you can write a mapper.py that expects stdin and just run it and amazingly you can also run it on hadoop.&#160;&#160;in the java map reduce interface we got line by line, here we get the stdin we can do anything we want. [https://www.safaribooksonline.com/library/view/hadoop-and-spark/9780134770871/HASF_01_05_01.html?autoStart=True](https://www.safaribooksonline.com/library/view/hadoop-and-spark/9780134770871/HASF_01_05_01.html?autoStart=True)
+    </p>
+    <p>
+      ```
+    </p>
+    <p>
+      Then you run it with:
+    </p>
+    <p>
+      ```bash
+    </p>
+    <p>
+      /usr/lib/hadoop/contrib/streaming/hadoop-streaming-1.1.2.21.jar -file ./mapper.py -mapeper ./mapper.py -file ./reducer.py -reducer ./reducer.py ...
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="pipes" ID="ID_984467399" CREATED="1523621419862" MODIFIED="1523621553650"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      **Pipes interface to mapreduce**
+    </p>
+    <p>
+      it's a clean interface to do map reduce.
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="YARN" ID="ID_1888615861" CREATED="1523603417977" MODIFIED="1523606811452"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      does not care that its' map reduce its running could be any job.&#160;&#160;the previous job manager and task manager ran only map reduce.&#160;&#160;jobTracker manages jobs and taskTracker is on local nodes.
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
 </node>
 <node TEXT="hive" POSITION="right" ID="ID_229919236" CREATED="1521870026287" MODIFIED="1521870028694">
@@ -1042,12 +1598,36 @@
 <node TEXT="considerations" ID="ID_1177408166" CREATED="1521877929594" MODIFIED="1521877932787">
 <node TEXT="develop" ID="ID_1422374412" CREATED="1521876392331" MODIFIED="1521876394082"/>
 <node TEXT="deploy" ID="ID_1355586442" CREATED="1521876396334" MODIFIED="1521876397951"/>
-<node TEXT="iteration time" ID="ID_1791866306" CREATED="1521877941260" MODIFIED="1521877943449"/>
+<node TEXT="iteration time" ID="ID_1791866306" CREATED="1521877941260" MODIFIED="1523603571089"/>
 <node TEXT="lower scale" ID="ID_627255401" CREATED="1521877955273" MODIFIED="1521877959402"/>
 <node TEXT="processing time" ID="ID_94767701" CREATED="1521877964327" MODIFIED="1521877966930"/>
 </node>
 <node TEXT="key technologies" ID="ID_541624609" CREATED="1521878763889" MODIFIED="1521878767686">
-<node TEXT="S3" ID="ID_1660819003" CREATED="1521878768143" MODIFIED="1521878769112"/>
+<node TEXT="S3" FOLDED="true" ID="ID_1660819003" CREATED="1521878768143" MODIFIED="1523705964292"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      bucket name:
+    </p>
+    <p>
+      1. no underscores has to be a valid hostname for hadoop usage in url
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="ACL" ID="ID_553144015" CREATED="1523705756641" MODIFIED="1523705758207"/>
+</node>
 <node TEXT="redshift" ID="ID_1683304109" CREATED="1521883631394" MODIFIED="1521883644390"><richcontent TYPE="NOTE">
 
 <html>
@@ -1090,6 +1670,7 @@
 </html>
 </richcontent>
 </node>
+<node TEXT="ec2" ID="ID_1998664016" CREATED="1523695712820" MODIFIED="1523695714033"/>
 </node>
 <node TEXT="resources" ID="ID_434889209" CREATED="1521890456178" MODIFIED="1521890463261"><richcontent TYPE="NOTE">
 
@@ -1128,6 +1709,114 @@
 </html>
 </richcontent>
 </node>
+<node TEXT="ec2" ID="ID_1355778222" CREATED="1523695716298" MODIFIED="1523695728377"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      create keypair public/private key in order to be able to connect
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="EMR" ID="ID_625095445" CREATED="1523695777881" MODIFIED="1523698485766"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      We it's all going through s3 bucket we create there folders for the jar to run for logs for the results and for the input data.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Resources:
+    </p>
+    <p>
+      1. [https://www.youtube.com/watch?v=cAZur5maWZE&amp;index=3&amp;list=PLB5E99B925DBE79FF](https://www.youtube.com/watch?v=cAZur5maWZE&amp;index=3&amp;list=PLB5E99B925DBE79FF)
+    </p>
+    <p>
+      ```
+    </p>
+    <p>
+      elastic map reduce
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="s3" ID="ID_1780012038" CREATED="1523695785857" MODIFIED="1523705396770"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      EMR uses S3 for input and output data you need to create buckets to put your jar files and input and output.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      1. bucketname/folder for specifying jar to aws console
+    </p>
+    <p>
+      1. s3n://bucket/path # =&gt; for hadoop args
+    </p>
+    <p>
+      1. s3://bucket/path # for aws cmd line tools.
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="JobFlow" ID="ID_876956720" CREATED="1523698682007" MODIFIED="1523698882777"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      Then create a job flow so that you can create the flow you tell it where your jar file is the jar run arguments.
+    </p>
+    <p>
+      if you choose keepAlive &lt;- no this means the EMR cluster is stopped once the job fiishes.
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
 </node>
 <node TEXT="python" POSITION="right" ID="ID_821721802" CREATED="1522557133588" MODIFIED="1522557135158">
 <edge COLOR="#7c007c"/>
@@ -1163,6 +1852,494 @@
 </node>
 </node>
 <node TEXT="matplotlib" ID="ID_1932019312" CREATED="1522697394743" MODIFIED="1522697399727"/>
+<node TEXT="pandas" ID="ID_733495861" CREATED="1523100649904" MODIFIED="1523100651314">
+<node TEXT="data" ID="ID_731711517" CREATED="1523384415329" MODIFIED="1523384430061">
+<node ID="ID_33753824" CREATED="1523100661527" MODIFIED="1523100739698"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font size="1">pandas.read_csv</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```python
+    </p>
+    <p>
+      url = &quot;https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data&quot;
+    </p>
+    <p>
+      names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+    </p>
+    <p>
+      dataset = pandas.read_csv(url, names=names) #name is the above name for columns.
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node ID="ID_1530058819" CREATED="1523100760689" MODIFIED="1523100809424"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font size="1">dataset.shape</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node ID="ID_1044506561" CREATED="1523100778072" MODIFIED="1523100803144"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font size="1">dataset.head(20)</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node ID="ID_1135273186" CREATED="1523100833075" MODIFIED="1523100866536"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font size="1">dataset.describe()</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="print(dataset.groupby(&apos;class&apos;).size())" ID="ID_159958472" CREATED="1523104135356" MODIFIED="1523104150454">
+<font SIZE="8"/>
+</node>
+</node>
+<node TEXT="plot" ID="ID_627743534" CREATED="1523104299864" MODIFIED="1523104301831">
+<node TEXT="dataset.plot(kind=&apos;box&apos;, subplots=True, layout=(2,2), sharex=False, sharey=False)" ID="ID_995471276" CREATED="1523104243630" MODIFIED="1523104616457">
+<font SIZE="8"/>
+</node>
+<node TEXT="dataset.hist()" ID="ID_363192239" CREATED="1523104279714" MODIFIED="1523104612171">
+<font SIZE="8"/>
+</node>
+<node TEXT="scatter_matrix(dataset)" ID="ID_569613973" CREATED="1523104593613" MODIFIED="1523384399720">
+<font SIZE="8"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      plt.show()
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="build model" ID="ID_78251193" CREATED="1523384446351" MODIFIED="1523385423846">
+<node TEXT="validation dataset" ID="ID_1959219170" CREATED="1523385084390" MODIFIED="1523385412808">
+<icon BUILTIN="full-1"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      seperate out validation dataset.
+    </p>
+    <p>
+      80% for data, 20% for validation.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ```python
+    </p>
+    <p>
+      # Split-out validation dataset
+    </p>
+    <p>
+      array = dataset.values
+    </p>
+    <p>
+      X = array[:,0:4]
+    </p>
+    <p>
+      Y = array[:,4]
+    </p>
+    <p>
+      validation_size = 0.20
+    </p>
+    <p>
+      seed = 7
+    </p>
+    <p>
+      X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="cross validation" ID="ID_31900584" CREATED="1523385282083" MODIFIED="1523385416534">
+<icon BUILTIN="full-2"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      10 fold cross validation for accuracy.
+    </p>
+    <p>
+      ```python
+    </p>
+    <p>
+      # Test options and evaluation metric
+    </p>
+    <p>
+      seed = 7
+    </p>
+    <p>
+      scoring = 'accuracy'
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="build choose models" ID="ID_1804647778" CREATED="1523385391531" MODIFIED="1523385923275">
+<icon BUILTIN="full-3"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      evaluate 6 models:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      1. Logistic Regression (LR)
+    </p>
+    <p>
+      1. Linear Discriminant Analysis (LDA)
+    </p>
+    <p>
+      1. K-Nearest Neighbors (KNN).
+    </p>
+    <p>
+      1. Classification and Regression Trees (CART).
+    </p>
+    <p>
+      1. Gaussian Naive Bayes (NB).
+    </p>
+    <p>
+      1. Support Vector Machines (SVM).
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      This is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms
+    </p>
+    <p>
+      ```
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ```python
+    </p>
+    <p>
+      # Spot Check Algorithms
+    </p>
+    <p>
+      models = []
+    </p>
+    <p>
+      models.append(('LR', LogisticRegression()))
+    </p>
+    <p>
+      models.append(('LDA', LinearDiscriminantAnalysis()))
+    </p>
+    <p>
+      models.append(('KNN', KNeighborsClassifier()))
+    </p>
+    <p>
+      models.append(('CART', DecisionTreeClassifier()))
+    </p>
+    <p>
+      models.append(('NB', GaussianNB()))
+    </p>
+    <p>
+      models.append(('SVM', SVC()))
+    </p>
+    <p>
+      # evaluate each model in turn
+    </p>
+    <p>
+      results = []
+    </p>
+    <p>
+      names = []
+    </p>
+    <p>
+      for name, model in models:
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;kfold = model_selection.KFold(n_splits=10, random_state=seed)
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;results.append(cv_results)
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;names.append(name)
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;msg = &quot;%s: %f (%f)&quot; % (name, cv_results.mean(), cv_results.std())
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;print(msg)
+    </p>
+    <p>
+      ```
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      results:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ```bash
+    </p>
+    <p>
+      LR: 0.966667 (0.040825)
+    </p>
+    <p>
+      LDA: 0.975000 (0.038188)
+    </p>
+    <p>
+      KNN: 0.983333 (0.033333)
+    </p>
+    <p>
+      CART: 0.975000 (0.038188)
+    </p>
+    <p>
+      NB: 0.975000 (0.053359)
+    </p>
+    <p>
+      SVM: 0.981667 (0.025000)
+    </p>
+    <p>
+      ```
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      plot models comparison:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ```python
+    </p>
+    <p>
+      # Compare Algorithms
+    </p>
+    <p>
+      fig = plt.figure()
+    </p>
+    <p>
+      fig.suptitle('Algorithm Comparison')
+    </p>
+    <p>
+      ax = fig.add_subplot(111)
+    </p>
+    <p>
+      plt.boxplot(results)
+    </p>
+    <p>
+      ax.set_xticklabels(names)
+    </p>
+    <p>
+      plt.show()
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="make predictions" ID="ID_1390573783" CREATED="1523385924551" MODIFIED="1523385961504">
+<icon BUILTIN="full-4"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```python
+    </p>
+    <p>
+      # Make predictions on validation dataset
+    </p>
+    <p>
+      knn = KNeighborsClassifier()
+    </p>
+    <p>
+      knn.fit(X_train, Y_train)
+    </p>
+    <p>
+      predictions = knn.predict(X_validation)
+    </p>
+    <p>
+      print(accuracy_score(Y_validation, predictions))
+    </p>
+    <p>
+      print(confusion_matrix(Y_validation, predictions))
+    </p>
+    <p>
+      print(classification_report(Y_validation, predictions))
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="errors f1 score" ID="ID_477847901" CREATED="1523386013535" MODIFIED="1523386070912">
+<icon BUILTIN="full-5"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      We can see that the accuracy is 0.9 or 90%. The confusion matrix provides an indication of the three errors made. Finally, the classification report provides a breakdown of each class by precision, recall, f1-score and support showing excellent results (granted the validation dataset was small).
+    </p>
+    <p>
+      ```
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ```bash
+    </p>
+    <p>
+      0.9
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      [[ 7&#160;&#160;0&#160;&#160;0]
+    </p>
+    <p>
+      &#160;[ 0 11&#160;&#160;1]
+    </p>
+    <p>
+      &#160;[ 0&#160;&#160;2&#160;&#160;9]]
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;precision&#160;&#160;&#160;&#160;recall&#160;&#160;f1-score&#160;&#160;&#160;support
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Iris-setosa&#160;&#160;&#160;&#160;&#160;&#160;&#160;1.00&#160;&#160;&#160;&#160;&#160;&#160;1.00&#160;&#160;&#160;&#160;&#160;&#160;1.00&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;7
+    </p>
+    <p>
+      Iris-versicolor&#160;&#160;&#160;0.85&#160;&#160;&#160;&#160;&#160;&#160;0.92&#160;&#160;&#160;&#160;&#160;&#160;0.88&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;12
+    </p>
+    <p>
+      Iris-virginica&#160;&#160;&#160;&#160;0.90&#160;&#160;&#160;&#160;&#160;&#160;0.82&#160;&#160;&#160;&#160;&#160;&#160;0.86&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;11
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      avg / total&#160;&#160;&#160;&#160;&#160;&#160;&#160;0.90&#160;&#160;&#160;&#160;&#160;&#160;0.90&#160;&#160;&#160;&#160;&#160;&#160;0.90&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;30
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="resources" ID="ID_538906411" CREATED="1523385234314" MODIFIED="1523385236138">
+<node TEXT="https://machinelearningmastery.com/machine-learning-in-python-step-by-step/" ID="ID_763638099" CREATED="1523385253520" MODIFIED="1523385261165" LINK="https://machinelearningmastery.com/machine-learning-in-python-step-by-step/"/>
+</node>
+</node>
 </node>
 </node>
 </map>

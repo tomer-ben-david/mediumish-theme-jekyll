@@ -63,7 +63,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="5" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="7" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="BFS" POSITION="right" ID="ID_1928311982" CREATED="1521894985833" MODIFIED="1521895089918">
 <edge COLOR="#ff0000"/>
 <richcontent TYPE="NOTE">
@@ -164,7 +164,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="no need parenthasis" ID="ID_525362810" CREATED="1522736001654" MODIFIED="1522736006822"/>
 </node>
@@ -180,7 +179,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -199,7 +197,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -239,7 +236,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -273,6 +269,42 @@
     </p>
     <p>
       ```
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="softskills" POSITION="left" ID="ID_1730404508" CREATED="1523344868170" MODIFIED="1523344870446">
+<edge COLOR="#7c0000"/>
+<node TEXT="meetings" ID="ID_199574575" CREATED="1523344870704" MODIFIED="1523344871692">
+<node TEXT="end" ID="ID_971726602" CREATED="1523344872840" MODIFIED="1523344902586"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      you already konw how you want the meeting to end, before meeting and during meeting you should stick as fast as possible to how the meeting should and and put your voice.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="math" POSITION="right" ID="ID_1421960803" CREATED="1523597887311" MODIFIED="1523597888341">
+<edge COLOR="#00007c"/>
+<node TEXT="mod" ID="ID_1026383891" CREATED="1523597888536" MODIFIED="1523597908045"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      only the reminder so 2 % 3 is 1 and 4 % 3 is 1
     </p>
   </body>
 </html>
