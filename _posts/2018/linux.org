@@ -1,0 +1,11 @@
+#+TITLE: Linux
+
+* Performance
+** vmstat
+   1. `vmstat 5`
+
+| metric | meaning                  |
+|--------+--------------------------|
+| us     | time spent on user cpu   |
+| sy     | time spend on system cpu |
+|        |                          |

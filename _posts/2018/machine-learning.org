@@ -1,0 +1,54 @@
+#+TITLE: Machine Learning
+
+* Hadoop
+** Install 
+   1. From source: https://www.safaribooksonline.com/library/view/hadoop-and-spark/9780134770871/HASF_01_02_02_01.html
+extract hadoop tar.gz, make sure JAVA_HOME in path, HADOOP_HOME configured, add yarn, hdfs, mapred users, make directories: /var/data/hadoop/hadfs/[nn,snn], log directory,
+   2. `core-site.xml`
+   1. `hdfs-site.xml` - hdfs parameters, dfs.replication: 1, dfs. directory...
+** Commands
+   1. hadoop job -list
+   1. hadoop jar hadoop-test.jar TestDFSIO -write -nrFiles 100 -fileSize 10000 # test performane of hdfs. # 100 files each file 10GB
+   1. yarn jar $YARN_EXAMPLES/hadoop-mapreduce-client-jobclient.jar TestDFSIO -write -nrFiles 16 -fileSize 1000 # use -read to do a read test.  After finished run -clean to cleanup the test data.
+   1. yarn jar hadoop-test.jar # version 2 of hadoop use yarn isntead of hadoop.
+   1. hadoop job -kill JOB_ID
+   1. yarn logs # see logs for jobs.
+** Logs
+   1. `/var/log/hadoop/mapred/[userlogs]`
+** URLs 
+   1. http://headnode:50030/jobtracker.jsp
+   1. http://node:8088/cluster/apps
+** Misc
+*** Versions
+    1. Version 2 uses yarn can run general jobs backwar compatible. 
+* AWS
+** CLI
+   1. `chmod 400 ~/.ssh/keys/tomer-key-pair.pem`
+   1. `aws list-clusters`
+   1. `aws emr terminate-clusters --cluster-ids j-W25BXM9TCOGX j-3TAO2IAU9309F j-17HV5K404AZNE`
+#+BEGIN_SRC bash
+aws emr create-cluster --name "Add Spark Step Cluster" --release-label emr-5.13.0 --applications Name=Spark \
+--ec2-attributes KeyName=tomer-key-pair --instance-type m4.large --instance-count 3 \
+--steps Type=Spark,Name="Spark Program",ActionOnFailure=CONTINUE,Args=[--class,org.apache.spark.examples.SparkPi,/usr/lib/spark/lib/spark-examples.jar,10] --use-default-roles
+#+END_SRC      
+   1. `aws emr list-instances --cluster-id j-MQIKB378OARL` # List ec2 instances for amazon emr.
+
+* Pipeline
+** Healthy pipeline
+     1. Reproducibility, **metrics**.
+     1.1 Version control, reproduce input data, spin models with docker containers.
+  common process to build deploy and test machine learning models.
+** Spark
+     1. Spark does not capture any of the metadata, model hyperparameters, where data came from.
+     1. Spark does not give us ability to export the model efficiently where no spark libs reside.
+     1. Spark does not have scheduling.
+
+* For Amazon
+** Pipeline models
+     * ModelDB (Track model training metadata, data provenance.), **Palladium**, (Serve scikit models and pipelines), PMML, MLeap, H2O.ai, Apache airflow - DAG pipelines, OOZIE, Luigi -  0
+     
+
+* Learning Log
+** [[https://www.safaribooksonline.com/learning-paths/learning-path-building/9781492027485/[Machine learning path]]
+   1. Release process, performance, model evaluation.
+   
