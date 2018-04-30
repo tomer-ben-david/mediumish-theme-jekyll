@@ -63,7 +63,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="9" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="10" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="data" POSITION="right" ID="ID_1580962771" CREATED="1521814074501" MODIFIED="1521814092945">
 <edge COLOR="#ff0000"/>
 <node TEXT="spreadsheet" ID="ID_784430210" CREATED="1521814078005" MODIFIED="1521814109603"><richcontent TYPE="NOTE">
@@ -801,7 +801,9 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="from source" ID="ID_1334061015" CREATED="1521828764810" MODIFIED="1521830474750"><richcontent TYPE="NOTE">
+<node TEXT="from source" ID="ID_1334061015" CREATED="1521828764810" MODIFIED="1524323001564">
+<icon BUILTIN="button_ok"/>
+<richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -816,9 +818,12 @@
     </p>
   </body>
 </html>
+
 </richcontent>
 </node>
-<node TEXT="core-site.xml" ID="ID_1905530992" CREATED="1521829494537" MODIFIED="1521830434337"><richcontent TYPE="NOTE">
+<node TEXT="core-site.xml" ID="ID_1905530992" CREATED="1521829494537" MODIFIED="1524323001565">
+<icon BUILTIN="button_ok"/>
+<richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -832,7 +837,9 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="hdfs-site.xml" ID="ID_11525604" CREATED="1521830434777" MODIFIED="1521830494092"><richcontent TYPE="NOTE">
+<node TEXT="hdfs-site.xml" ID="ID_11525604" CREATED="1521830434777" MODIFIED="1524323001565">
+<icon BUILTIN="button_ok"/>
+<richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -844,6 +851,7 @@
     </p>
   </body>
 </html>
+
 </richcontent>
 </node>
 <node TEXT="format hdfs" ID="ID_342693020" CREATED="1521830596592" MODIFIED="1521830631312"><richcontent TYPE="NOTE">
@@ -1816,6 +1824,161 @@
 
 </richcontent>
 </node>
+<node TEXT="Hive" ID="ID_1480093137" CREATED="1523725637919" MODIFIED="1523725706052"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```bash
+    </p>
+    <p>
+      mybucket/scripts/myhive.hql # =&gt; I put there my hive script.
+    </p>
+    <p>
+      mybucket/data/mydata.csv # =&gt; I put there my data
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="cli" ID="ID_1624204239" CREATED="1524040169185" MODIFIED="1524040170165">
+<node TEXT="create spark cluster" ID="ID_1644121836" CREATED="1524039863461" MODIFIED="1524199753211"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```bash
+    </p>
+    <p>
+      aws emr create-cluster --name &quot;Spark cluster&quot; --release-label emr-5.13.0 --applications Name=Spark \
+    </p>
+    <p>
+      --ec2-attributes KeyName=tomer-key-pair --instance-type m4.small --instance-count 2 --use-default-roles
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="" ID="ID_771305824" CREATED="1524319983020" MODIFIED="1524319983020"/>
+</node>
+<node TEXT="list emr clusters" ID="ID_580982320" CREATED="1524040173620" MODIFIED="1524040182962"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```bash
+    </p>
+    <p>
+      aws emr list-clusters
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="terminate clusters" ID="ID_1223655749" CREATED="1524040264940" MODIFIED="1524040272598"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```bash
+    </p>
+    <p>
+      aws emr terminate-clusters --cluster-ids=&quot;j-W25BXM9TCOGX&quot;
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="awscli" ID="ID_1036971940" CREATED="1524039300687" MODIFIED="1524039305223">
+<node TEXT="install" ID="ID_774492103" CREATED="1524039306222" MODIFIED="1524039416016"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```bash
+    </p>
+    <p>
+      pip3 install awscli --upgrade --user
+    </p>
+    <p>
+      ```
+    </p>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      then add /Users/tomer.bendavid/.local/bin to PATH on bash_profile
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="configure" ID="ID_351291710" CREATED="1524039446300" MODIFIED="1524039927258"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      1. `aws configure`
+    </p>
+    <p>
+      1. take security credentials from [here](https://console.aws.amazon.com/iam/home?region=us-east-1#/security_credential)
+    </p>
+    <p>
+      1. for default reigon i entered `us-east-1`
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 </node>
 <node TEXT="python" POSITION="right" ID="ID_821721802" CREATED="1522557133588" MODIFIED="1522557135158">
@@ -1852,9 +2015,28 @@
 </node>
 </node>
 <node TEXT="matplotlib" ID="ID_1932019312" CREATED="1522697394743" MODIFIED="1522697399727"/>
-<node TEXT="pandas" ID="ID_733495861" CREATED="1523100649904" MODIFIED="1523100651314">
+<node TEXT="pandas" ID="ID_733495861" CREATED="1523100649904" MODIFIED="1524133625991"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```python
+    </p>
+    <p>
+      from pandas import read_csv
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
 <node TEXT="data" ID="ID_731711517" CREATED="1523384415329" MODIFIED="1523384430061">
-<node ID="ID_33753824" CREATED="1523100661527" MODIFIED="1523100739698"><richcontent TYPE="NODE">
+<node ID="ID_33753824" CREATED="1523100661527" MODIFIED="1524128103049"><richcontent TYPE="NODE">
 
 <html>
   <head>
@@ -1891,6 +2073,7 @@
     </p>
   </body>
 </html>
+
 </richcontent>
 </node>
 <node ID="ID_1530058819" CREATED="1523100760689" MODIFIED="1523100809424"><richcontent TYPE="NODE">
@@ -1938,6 +2121,23 @@
 <node TEXT="print(dataset.groupby(&apos;class&apos;).size())" ID="ID_159958472" CREATED="1523104135356" MODIFIED="1523104150454">
 <font SIZE="8"/>
 </node>
+<node TEXT="pandas.set_option(&apos;expand_frame_repr&apos;, False)" ID="ID_1380887896" CREATED="1524139292101" MODIFIED="1524139329659">
+<font SIZE="8"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Don't break table output when printing like with `.head()` to new lines, all in one line, wide table.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 <node TEXT="plot" ID="ID_627743534" CREATED="1523104299864" MODIFIED="1523104301831">
 <node TEXT="dataset.plot(kind=&apos;box&apos;, subplots=True, layout=(2,2), sharex=False, sharey=False)" ID="ID_995471276" CREATED="1523104243630" MODIFIED="1523104616457">
@@ -1946,7 +2146,7 @@
 <node TEXT="dataset.hist()" ID="ID_363192239" CREATED="1523104279714" MODIFIED="1523104612171">
 <font SIZE="8"/>
 </node>
-<node TEXT="scatter_matrix(dataset)" ID="ID_569613973" CREATED="1523104593613" MODIFIED="1523384399720">
+<node TEXT="scatter_matrix(dataset)" ID="ID_569613973" CREATED="1523104593613" MODIFIED="1524133869718">
 <font SIZE="8"/>
 <richcontent TYPE="NOTE">
 
@@ -1960,6 +2160,7 @@
     </p>
   </body>
 </html>
+
 </richcontent>
 </node>
 </node>
@@ -2013,7 +2214,7 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="cross validation" ID="ID_31900584" CREATED="1523385282083" MODIFIED="1523385416534">
+<node TEXT="cross validation" ID="ID_31900584" CREATED="1523385282083" MODIFIED="1524134973306">
 <icon BUILTIN="full-2"/>
 <richcontent TYPE="NOTE">
 
@@ -2042,6 +2243,7 @@
     </p>
   </body>
 </html>
+
 </richcontent>
 </node>
 <node TEXT="build choose models" ID="ID_1804647778" CREATED="1523385391531" MODIFIED="1523385923275">
@@ -2339,6 +2541,30 @@
 <node TEXT="resources" ID="ID_538906411" CREATED="1523385234314" MODIFIED="1523385236138">
 <node TEXT="https://machinelearningmastery.com/machine-learning-in-python-step-by-step/" ID="ID_763638099" CREATED="1523385253520" MODIFIED="1523385261165" LINK="https://machinelearningmastery.com/machine-learning-in-python-step-by-step/"/>
 </node>
+</node>
+</node>
+<node TEXT="Amazon" POSITION="left" ID="ID_465172746" CREATED="1524126987841" MODIFIED="1524126989592">
+<edge COLOR="#007c7c"/>
+<node TEXT="open data" ID="ID_1074743878" CREATED="1524126990803" MODIFIED="1524127011213"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ```markdown
+    </p>
+    <p>
+      1. [Amazon reviews data set](https://www.kaggle.com/bittlingmayer/amazonreviews)
+    </p>
+    <p>
+      ```
+    </p>
+  </body>
+</html>
+
+</richcontent>
 </node>
 </node>
 </node>

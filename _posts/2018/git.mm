@@ -63,7 +63,7 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="12" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="15" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="configurations" POSITION="right" ID="ID_169919313" CREATED="1521813688542" MODIFIED="1523343476969">
 <edge COLOR="#ff0000"/>
 <richcontent TYPE="NOTE">
@@ -101,73 +101,6 @@
 <node TEXT="http://ohshitgit.com" ID="ID_1730121557" CREATED="1521813781093" MODIFIED="1521813842665" LINK="http://ohshitgit.com"/>
 <node TEXT="https://github.com/k88hudson/git-flight-rules" ID="ID_1310111977" CREATED="1521813852497" MODIFIED="1521813852497" LINK="https://github.com/k88hudson/git-flight-rules"/>
 </node>
-<node TEXT="git pull" POSITION="right" ID="ID_411866949" CREATED="1523302660797" MODIFIED="1523302662461">
-<edge COLOR="#00ff00"/>
-<node TEXT="default merge" ID="ID_1125826849" CREATED="1523302712754" MODIFIED="1523302717500">
-<node TEXT="git pull --rebase" ID="ID_1748348568" CREATED="1523380222984" MODIFIED="1523383750927"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      rebase instead.&#160;&#160;instead of two lines (2 branches) appends your commit to the master branch one straight line.&#160;&#160;So rebase is conceptually simulating that we take turns like concurrency we take turns on the master and not updating concurrently.
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      demo change two separate files.&#160;&#160;git push.&#160;&#160;one of them wont work.&#160;&#160;need to do git pull.&#160;&#160;then git push works.
-    </p>
-    <p>
-      git show the graph and you will see that there are like separate lines that were merged.
-    </p>
-    <p>
-      now doing instead `git pull --rebase`:
-    </p>
-    <p>
-      1. imagine put aside my work.
-    </p>
-    <p>
-      2. pull the master remote.
-    </p>
-    <p>
-      3. and then stick my changes to the end.
-    </p>
-    <p>
-      so now we actually taking turns.&#160;&#160;if we need to resolve this, we resolve one continue to next etc.
-    </p>
-    <p>
-      timestamps are irrelevant only the order of the tool git is not usung it its just human decoration.
-    </p>
-    <p>
-      **huge advantage in linear history.**
-    </p>
-  </body>
-</html>
-</richcontent>
-<node TEXT="love the straight line!" ID="ID_240232402" CREATED="1523381365218" MODIFIED="1523381370931"/>
-</node>
-<node TEXT="git config branch.autosetuprebase always" ID="ID_985442596" CREATED="1523381881320" MODIFIED="1523382022172"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      always rebased indicator to what we want to do.
-    </p>
-    <p>
-      git checkout branch will show that the default is rebase.
-    </p>
-  </body>
-</html>
-</richcontent>
-</node>
-</node>
-</node>
 <node TEXT="rebase" POSITION="left" ID="ID_555037116" CREATED="1523302740099" MODIFIED="1523302896156">
 <edge COLOR="#ff00ff"/>
 <richcontent TYPE="NOTE">
@@ -184,9 +117,9 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="git push" POSITION="right" ID="ID_1519099079" CREATED="1523636216613" MODIFIED="1523637746381">
-<edge COLOR="#ff0000"/>
-<richcontent TYPE="NOTE">
+<node TEXT="git remote" POSITION="right" ID="ID_530514680" CREATED="1523380381998" MODIFIED="1523380383588">
+<edge COLOR="#00ffff"/>
+<node TEXT="git push" ID="ID_1519099079" CREATED="1523636216613" MODIFIED="1523865083605"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -262,8 +195,6 @@
 </richcontent>
 </node>
 </node>
-<node TEXT="git remote" POSITION="right" ID="ID_530514680" CREATED="1523380381998" MODIFIED="1523380383588">
-<edge COLOR="#00ffff"/>
 <node TEXT="git remote -v" ID="ID_1425496068" CREATED="1523380384079" MODIFIED="1523380386381"/>
 <node TEXT="git branch -r" ID="ID_181117669" CREATED="1523381961633" MODIFIED="1523381977038"><richcontent TYPE="NOTE">
 
@@ -278,6 +209,72 @@
   </body>
 </html>
 </richcontent>
+</node>
+<node TEXT="git pull" ID="ID_411866949" CREATED="1523302660797" MODIFIED="1523865092868">
+<node TEXT="default merge" ID="ID_1125826849" CREATED="1523302712754" MODIFIED="1523302717500">
+<node TEXT="git pull --rebase" ID="ID_1748348568" CREATED="1523380222984" MODIFIED="1523383750927"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      rebase instead.&#160;&#160;instead of two lines (2 branches) appends your commit to the master branch one straight line.&#160;&#160;So rebase is conceptually simulating that we take turns like concurrency we take turns on the master and not updating concurrently.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      demo change two separate files.&#160;&#160;git push.&#160;&#160;one of them wont work.&#160;&#160;need to do git pull.&#160;&#160;then git push works.
+    </p>
+    <p>
+      git show the graph and you will see that there are like separate lines that were merged.
+    </p>
+    <p>
+      now doing instead `git pull --rebase`:
+    </p>
+    <p>
+      1. imagine put aside my work.
+    </p>
+    <p>
+      2. pull the master remote.
+    </p>
+    <p>
+      3. and then stick my changes to the end.
+    </p>
+    <p>
+      so now we actually taking turns.&#160;&#160;if we need to resolve this, we resolve one continue to next etc.
+    </p>
+    <p>
+      timestamps are irrelevant only the order of the tool git is not usung it its just human decoration.
+    </p>
+    <p>
+      **huge advantage in linear history.**
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="love the straight line!" ID="ID_240232402" CREATED="1523381365218" MODIFIED="1523381370931"/>
+</node>
+<node TEXT="git config branch.autosetuprebase always" ID="ID_985442596" CREATED="1523381881320" MODIFIED="1523382022172"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      always rebased indicator to what we want to do.
+    </p>
+    <p>
+      git checkout branch will show that the default is rebase.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 </node>
 </node>
 <node TEXT="git commit" POSITION="left" ID="ID_295514077" CREATED="1523380521302" MODIFIED="1523380522971">
@@ -1080,8 +1077,82 @@
 </html>
 
 </richcontent>
+<node TEXT="@" ID="ID_504052906" CREATED="1523882673203" MODIFIED="1523882689405"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Head is also known as &quot;@&quot; you can use @ whenever you need head
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<font SIZE="8"/>
+</node>
+<node TEXT="git checkout @{-1}" ID="ID_1893497389" CREATED="1523882690815" MODIFIED="1523883104180">
+<font SIZE="8"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      git checkout @ is HEAD then go to the last place (-1) of the HEAD meaning the last branch that HEAD pointed to.
+    </p>
+  </body>
+</html>
+
+</richcontent>
 </node>
 </node>
+</node>
+<node TEXT="maintenance recovery" ID="ID_1989679458" CREATED="1523720785568" MODIFIED="1523720827973"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      if you do `git reset --hard skfjhskfdhj` and thus you go back and loose a commit you can do `git reflog;git log -g` and then `git checkout to an older commit`
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="git log" POSITION="right" ID="ID_1830072467" CREATED="1523876728919" MODIFIED="1523876787301">
+<edge COLOR="#00ff00"/>
+<node TEXT="git log --oneline --decorate --graph --all" ID="ID_184204854" CREATED="1523876772189" MODIFIED="1523876780520">
+<font SIZE="8"/>
+</node>
+</node>
+<node TEXT="ls-files" POSITION="left" ID="ID_904482779" CREATED="1523882090231" MODIFIED="1523882092620">
+<edge COLOR="#ff00ff"/>
+<node TEXT="git ls-files --stage" ID="ID_546590950" CREATED="1523882094275" MODIFIED="1523882117027">
+<font SIZE="8"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Show staged files.
+    </p>
+  </body>
+</html>
+
+</richcontent>
 </node>
 </node>
 </node>
