@@ -1,0 +1,17 @@
+#+TITLE: Git Presentation
+
+* What have I done?
+** RefLog
+
+Tracking all commits on braches
+
+#+BEGIN_SRC bash
+
+$ git reflog
+
+735595e (HEAD -> master) HEAD@{0}: commit (initial): initial commit
+
+$ cat .git/logs/HEAD     
+0000000000000000000000000000000000000000 735595e591374b524987698e3b151edeb040179a Tomer Ben David <tomer.bendavid@thomsonreuters.com> 1524558335 +0300  commit (initial): initial commit
+
+#+END_SRC

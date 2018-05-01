@@ -1,6 +1,5 @@
 #+TITLE: Int
 
-* Java
 * BFS
 
 ```java
@@ -48,13 +47,15 @@ to convert: operands stay in same relative places, only operators change positio
 
 push operands as long as we have operands once we have operator pop 2 operands and run operation on them.
 
-* resources
+* Resources
 
 ** Problem solving with algorithms and data structures
 
 online concise python book
 
-* java
+* Java
+** General
+*** ~jps -l~ Show current java processes.
 ** Performance
 *** Measure
 **** cpu
@@ -100,6 +101,7 @@ online concise python book
      1. ~-XX:+PrintApplicationConcurrentTime~ How much time did the application run between the gc and safepoints.  important.
      1. ~-XX:+PrintTenuringDistribution~ - How much time objects stay alive in your generation spaces.  "new threshold 1 (max 15)" means at age 1 it's promotion objects to old generation space. Meaning survivor space is not large enough so it was choosing age 1.
      1. ~-XX:+PrintAdaptiveSizePolicy~ (Parallel GC or G1 Only)
+     1. ~VisualVM/VisualGC~ remote to troubleshoot remotely, install ~jstatd~ on server.  Requires to run with same javaapp user, and policy, jstatd policy file (search for it). Then start jstatd remotely.  Then from client ~jstat -gcutil pid@remoteip 2000~
 ***** Sections 
 ****** Young
        Moving them back and forth between s0 and s1.  Also known as from and to space.
@@ -246,7 +248,7 @@ goes together with involuntary context switching we have more threads than can b
 
 *** resources
 
-* softskills
+* Softskills
 
 ** meetings
 
@@ -254,7 +256,7 @@ goes together with involuntary context switching we have more threads than can b
 
 you already konw how you want the meeting to end, before meeting and during meeting you should stick as fast as possible to how the meeting should and and put your voice.
 
-* math
+* Math
 
 ** mod
 

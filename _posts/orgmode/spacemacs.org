@@ -3,7 +3,12 @@
 * SpaceMacs
 ** Installation 
    1. `brew cask install basictex` - so can export presentations.
+   ~dotspacemacs-additional-packages '(vimish-fold htmlize)~ - Add packages to install on startup. 
 ** Org-Mode
+** Code
+   | Key      | Function    |
+   | ~<s TAB~ | Insert Code |
+   |          |             |
 *** Tasks
 |--------------+----------|
 | What         | Shortcut |
@@ -22,6 +27,11 @@
    1. `SPC f y` - Show current file path
    1. `SPC f f` - Can create new files
 ** Edit
+|-----------------------+----------------|
+| Shotcut               | Task           |
+|-----------------------+----------------|
+| ~:%s/fromStr/toStr/g~ | Search Replace |
+|-----------------------+----------------|
    1. `[SPC t l]` - Toggle line wrap
    1. `C-c C-x C-w` to cut section then paste in new place with: `C-c C-x C-y`
 ** Crazy
@@ -40,7 +50,8 @@ for i in range(100):
 #+END_SRC
 *** `SPC SPC eshell` Shell 
 ** Navigation
-   1. `SPC j i` - Move between headers.
+   1. ~SPC j i~ - Move between headers.
+   1. ~C-g~ - Escape / Quit
 ** View
    1. `SPC z x` +- # => zoom in out
 ** OrgMode
