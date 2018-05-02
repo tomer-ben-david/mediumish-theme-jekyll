@@ -31,6 +31,7 @@
 | Shotcut               | Task           |
 |-----------------------+----------------|
 | ~:%s/fromStr/toStr/g~ | Search Replace |
+| ~v M-h~               | Select block   |
 |-----------------------+----------------|
    1. `[SPC t l]` - Toggle line wrap
    1. `C-c C-x C-w` to cut section then paste in new place with: `C-c C-x C-y`
