@@ -1,44 +1,43 @@
- Machine Learning
+#+TITLE: Machine Learning
+#+TODO: TODO(t) | IPRG(i) | DONE(d)
+#+STARTUP: inlineimages
 
-* data
 
-** spreadsheet
-
+* Data
+** Spreadsheet
 Think of data as a spreadsheet as a table.
-
 ** Matrix
-
 rows: observations, our datadata. columns - features.  Get used to it.
 
-*** sparse matrix
+*** Sparse matrix
 
 matrix who's most rows are zeros
 
-* learning
+* Learning
 
-** types
+** Types
 
-*** statistical
+*** Statistical
 
 Output = f(input) * => f(inputVariable) or f(inputVector), or f(independent variables) or Y = F(X) // X1,X2,..
 
-*** programming
+*** Programming
 
 OutputAttributes = Program(InputAttributes) or Program(InputFeatures) or Model = Algorithm(Data)
 
-*** parametric
+*** Parametric
 
 No matter how much data you throw on it, it will still need these parameters like a line `Y = ax + b` (logistic regression, linear discriminant analysis, perceptron)
 
-*** non parametric
+*** Non parametric
 
 No matter how much data you throw on it, it will still need these parameters like a line Y = ax + b (logistic regression, linear discriminant analysis, perceptron)
 
-*** supervised
+*** Supervised
 
 You have a teacher he knows the answer, classification, regression
 
-*** unsupervised
+*** Unsupervised
 
 No teacher, clustering, association
 
@@ -52,7 +51,7 @@ classification(input) => spam/notspam (categorical)<br />regression(input) => bi
 
 ** Errors
 
-*** error Y=f(x) + e
+*** Error Y=f(x) + e
 
 Y = f(X) + e * => You learn a function!
 
@@ -64,50 +63,51 @@ Bias Error (model assumptions), Variance Error, Irreducable Error. Increasing bi
 
 Resampling to estimate model accuracy, Hold back validation dataset, Cross validation.
 
-* map reduce
+* Map reduce
 
-```bash
+#+BEGIN_SRC bash`
 grep something | wc -l * => grep is map wc -l is the reduce!
-```Based on simple [key, value] pair
+#+END_SRC
+
+Based on simple [key, value] pair
 Moving computation is cheaper than moving data, our data is big ain't it?
 
-** map
+** Map
 
 List(input) => List(output) * => like grep
 
-** reduce
+** Reduce
 
 List(input) => Output(value) * => like wc -l
 
-* spark
+* Spark
+** Libraries
 
-** libraries
-
-*** graphx
+*** Graphx
 
 has a library for computing graph computations (in addition to mlib).
 
-** operations
+** Operations
 
-*** transformations
+*** Transformations
 
-*** actions
+*** Actions
 
-** data structures
+** Data structures
 
 *** RDD
 
-**** blind data
+**** Blind data
 
 *** DF
 
 dfs.replication: 1, dfs.namenode.name.dir: /var/data/hadoop/...
 
-**** scheme
+**** Scheme
 
 Think of it as distributed database table.
 
-**** read json element
+**** Read json element
 
 ```scala
 object SparkDFOnlineJson extends App {
@@ -207,21 +207,22 @@ object SparkDFOnlineJson extends App {
 
 ```
 
-** fast
+** Fast
 
 1. Memory
 1. Result of mappers goes to shared memory accross the cluster and not to disk
 1. In reality hadoop mapreduced optimized with Tez which means it keeps values in mem like spark
 1. In reality If spark runs out of memory intermediate results goes to disk.
 
-** run
+** Run
 
-```bash./bin/pyspark --master local[1] * start spark shell.
+#+BEGIN_SRC bash
+./bin/pyspark --master local[1] * start spark shell.
 ./bin/pyspark-submit myprog.py 1 2 just args
 ./bin/sparkR --master local * => (r spark shell)
-```
+#+END_SRC
 
-** hdfs
+** Hdfs
 
 ```scala
 val textFile = sc.textFile("hdfs://localhost:9000/user/hdfs/somefile.txt")
@@ -238,7 +239,7 @@ almost every machine learning algorithm uses optimisation at it's core, optimisi
 
 Have large amounts of data, update to coefficients is for each training instance, not in batch, as we have random data we move quickly.
 
-* hadoop
+* Hadoop
 
 ** install
 
@@ -641,7 +642,13 @@ then add /Users/tomer.bendavid/.local/bin to PATH on bash_profile
 ```
 
 * python
-
+| command                                | description     |
+| ~conda create --name testenv~          |                 |
+| ~conda activate testenv~               |                 |
+| ~conda env list~                       |                 |
+| ~conda installs spyder~                |                 |
+| ~conda install -c conda-forge pyspark~ | install pyspark |
+|                                        |                 |
 ** urllib2
 
 *** getfile

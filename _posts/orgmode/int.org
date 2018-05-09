@@ -1,9 +1,90 @@
-#+TITLE: Int
+*+TITLE: Int
 
+* CS Patterns
+
+| Item           | Details                                  |
+| -------------- | ---------------------------------------- |
+| Ascii          | `[a-z]: [65,90], [A-Z]: [97-122], Space: [32]` |
+|                |                                          |
+| Java           |                                          |
+| is char letter | Character.isLetter(c)                    |
+| Split to works | String.split(" ")                        |
+|                |                                          |
+
+
+
+1. **Brute force**
+2. **Massage input** if can (sort, precalc, cache, turn to graph, turn to priority-queue/heap, HashMap, Set)
+3. If cannot massage input then `greedy algorithm`
+4. Try being `greedy` in O(n) see if works.
+5. Recursion, first item either in result or not, if yes, do this if not do that. 
+6. Dummy trick compare - str1, str2, str3? maybe instead of combinations you can just compare the length of str1+str2 to the length of str3?
+7. **impossible** what is the BEST HEAVEN data structure you would want to solve it? Now prepare that DS one time even with high calculation cost and use it to solve the problem.  [http://www.ardendertat.com/2011/10/17/programming-interview-questions-8-transform-word/](http://www.ardendertat.com/2011/10/17/programming-interview-questions-8-transform-word/)
+8. **Mental jump** convert input data structure to the best one you want! cost is one time then all lookups and you always have that output data structure, think you have hadoop.
+
+* Signs you need recursion
+
+1. **Permutations** The problem requires many permutations like 2^n
+2. **impossible** It looks impossible to solve the problem.  Let recursion help you. 
+
+3. **Impossible** cannot get answer? When questions looks impossible most probably recursion.  In this case you must get some help from recursion friend to reduce the problem.  Impossible question is a big hint we need a recursion, we can't boggle our mind around it.
+
+* Signs you need to massage input
+
+Impossible to solve, too many options, you need to turn the input data structure into the dream data structure that would help you resolve the question.  As you do it one time, precalc, and then for each test function you just run on the new data structure.
+
+* Coding Patterns
+
+| Task                     | Code                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| **Arrays**               |                                                              |
+| print array              | `Arrays.toString(new int[] {1,2,})`                          |
+| print 2 dim array        | `Arrays.deepToString(…)`                                     |
+| Sort array               | `Arrays.sort(arr)`                                           |
+| Initialize two dim array | `int[][] my2dimarr = new int[3][3]`                          |
+| **Heap**                 |                                                              |
+| PriorityQueue            | `PriorityQueue<Integer> q = new PriorityQueue<>(); q.add(2); q.poll()` |
+|                          |                                                              |
+
+
+
+1. Use **`PriorityQueue`** instead of Max/Min heap!!!! This will save you a huge load of time as you need a heap in rather many of the questions.
+2. Use `Arrays.binarySearch` - to find!!
+3. Use `Arrays.toList(new int {1, 2, 3})` to turn an array to list.
+4. `assert(condition for tests)` with `-ea` flag to turn it on.
+5. Throw `IllegalArgumentException` for quick validation.
+6. Use `while (cur.next() != null)` in linkedList to avoid holding two pointers `prev` and `cur`.
+7. `BFS` always finds the shortest path.
+8. `DFS` uses less space.
+9. Use `ArrayQueue` instead of `ArrayList` for efficient `FIFO` in arrayList remove would be `O(n)`
+10. Use `Collections.reverse` to reverse a `list` 
+11. `DFS` and `BFS` both take `O(m+n)`
+12. `BFS` store `nodesAlreadyVisited` don't revisit them wasting time in shortest path finding.
+
+* CS Literacy
+
+1. **Random Forests** => machine learning, take "average" of multiple decision trees as your result, avoic noise.
+2. **DFS** => Init: Stack, Push head ==> Loop while stack not empty ==> Pop one, Mark it, push all adjucent vertexes to stack.  O(V + E) [https://www.youtube.com/watch?v=1MBr9swUPE8](https://www.youtube.com/watch?v=1MBr9swUPE8)
+3. **merkel trees** tree of hashes you send it in between the nodes, so that nodes can very quickly know if they have the wrong data, so they sync.
+4. **vector clocks** logical clocks, think git and distributed resolution, although we are distributed each commit get's a hash and we can fix collisions.  
+
+* CS Interview Resources
+
+| Topic                                    | Category | Resource                                 |
+| ---------------------------------------- | -------- | ---------------------------------------- |
+| CS Programming Interview querstions and good answers |          | http://www.ardendertat.com/2011/10/18/programming-interview-questions-9-convert-array/ |
+|                                          |          |                                          |
+|                                          |          |                                          |
+
+
+
+* Sort
+** QuickSort
+   recurse: choose pivot, forwardI++, backwardI++, swap if left smaller pivot nad right bigger pivot.
 * BFS
 
-```java
-public int findLeftMostNode(TreeNode root) {
+*+BEGIN_SRC java
+Lpublic int findeftMostNode(TreeNode root) {
     Queue<TreeNode> queue = new LinkedList<>();
     queue.add(root);
     while (!queue.isEmpty()) {
@@ -15,7 +96,7 @@ public int findLeftMostNode(TreeNode root) {
     }
     return root.val;
 }
-```
+*+END_SRC
 
 ** queue
 
@@ -28,9 +109,7 @@ public int findLeftMostNode(TreeNode root) {
 ***** insert children
 
 * BTree
-
-In computer science, a B-tree is a self-balancing tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. The B-tree is a generalization of a binary search tree in that a node can have more than two children. ![btree](http://www.virtualmachinery.com/images/tree.gif)
-
+   In computer science, a B-tree is a self-balancing tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. The B-tree is a generalization of a binary search tree in that a node can have more than two children. ![btree](http://www.virtualmachinery.com/images/tree.gif)
 * infix
 
 ** postfix/prefix
@@ -249,7 +328,6 @@ goes together with involuntary context switching we have more threads than can b
 *** resources
 
 * Softskills
-
 ** meetings
 
 *** end
@@ -257,17 +335,13 @@ goes together with involuntary context switching we have more threads than can b
 you already konw how you want the meeting to end, before meeting and during meeting you should stick as fast as possible to how the meeting should and and put your voice.
 
 * Math
-
 ** mod
 
 only the reminder so 2 % 3 is 1 and 4 % 3 is 1
 
 * WORK
-
 ** amazon
-
 *** machine learning
-
 **** models lifecycle
 
 release process from data scientists to production
@@ -275,3 +349,6 @@ release process from data scientists to production
 **** measure effectiveness
 
 effectiveness of models are they good?
+* Status
+** TODO quick sort [[https://repl.it/@TomerBen1/KLargestElement][Quick Sort Code]]
+** TODO [[http://www.ardendertat.com/2011/10/27/programming-interview-questions-10-kth-largest-element-in-array/][Arden K Largest Element]]

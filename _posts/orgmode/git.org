@@ -1,43 +1,46 @@
- Git
+#+TITLE: Git
+#+TODO: TODO(t) | IPRG(i) | DONE(d)
+#+STARTUP: inlineimages
 
-* configurations
 
-```bash
-git config --system * => /etc/gitconfig
-git config --global * => ~/.gitconfig or ~/.config/git/config
-git config --local * => .git/config
-```
+* Concepts
 
-** global
+|--------------------------+-----------------------------------------------------------------------|
+| Concept                  | Description                                                           |
+|--------------------------+-----------------------------------------------------------------------|
+| Cache eq Index eq Staged | When you hear of cache index or staged all these are the same things. |
+|--------------------------+-----------------------------------------------------------------------|
 
-** user
+** Cache eq Index eq Staged
+* Configurations
+   ~git config --system * => /etc/gitconfig~
+   ~git config --global * => ~/.gitconfig or ~/.config/git/config~
+   ~git config --local * => .git/config~
+   https://dev.to/tomerbendavid/git-configurations-2ngi
+* git merge
+** git merge --abort
+ |-------------------------+-------------------------------------------|
+ | Command                 | Description                               |
+ |-------------------------+-------------------------------------------|
+ | ~git cherry-pick e43a6~ | Take e43a6 and rebase into current branch |
+ |-------------------------+-------------------------------------------|
 
-** repo
-
-** https://dev.to/tomerbendavid/git-configurations-2ngi
-
-* resources
-
-** http://ohshitgit.com
-
-** https://github.com/k88hudson/git-flight-rules
-
-* rebase
+* Rebase
 
 a way to integrate two branches instead of merge. instead of a branch - straight line, appends your commits to like the master branch.
 
 * git remote
-
 ** git push
-
-```markdown
-nothing in push? it's only pushing the commits.  control what is pushed, what is transmitted when we push.
-1. `git push` with no args would push all branches!  so this is the default.
-`git config --global push.default matching`  this is the default match the local name to remote name and push all.
+   nothing in push? it's only pushing the commits.  control what is pushed, what is transmitted when we push.
+   1. ~git push~ with no args would push all branches!  so this is the default.
+   1. ~git config --global push.default matching~  this is the default match the local name to remote name and push all.
 1. `git fconfig --global push.default nothing` - so you have specify explicitly what you want to push.
 1. `git config --global push.default current` push only the current branch.  this is what i like.
 1. `git config --global push.default tracking` - but you have to set it before you create or pull the branch.
 ```
+** Branch to Github
+   ~git remote add github https://github.com/tomer-ben-david/nodejs-fullstack-boilerplate.git~
+   ~git push -u github public~ - Push only public branch into github.
 
 *** multi master
 
@@ -82,25 +85,21 @@ timestamps are irrelevant only the order of the tool git is not usung it its jus
 
 always rebased indicator to what we want to do.
 git checkout branch will show that the default is rebase.
-
 * git commit
 
 ** metadata
 
 just strings, they could be wrong not credenhtials, commit message, author.
-
 * best practice
 
 ** coarse grained
 
 better to squash coars grained commits here is my feature, commits are self description to work.
-
 * directories
 
 ** refs
 
 pointers to commits, branches, tags, remotes.
-
 * rerere
 
 ```markdown
@@ -124,11 +123,6 @@ git commit * without a commit message.
 ```
 
 ** git config rerere.enabled true
-
-* git merge
-
-** git merge --abort
-
 * presentation
 
 Beautiful is better than ugly.
@@ -356,13 +350,15 @@ git checkout @ is HEAD then go to the last place (-1) of the HEAD meaning the la
 *** maintenance recovery
 
 if you do `git reset --hard skfjhskfdhj` and thus you go back and loose a commit you can do `git reflog;git log -g` and then `git checkout to an older commit`
-
 * git log
 
 ** git log --oneline --decorate --graph --all
-
 * ls-files
 
 ** git ls-files --stage
 
 Show staged files.
+* resources
+** http://ohshitgit.com
+
+** https://github.com/k88hudson/git-flight-rules
