@@ -65,7 +65,7 @@ Resampling to estimate model accuracy, Hold back validation dataset, Cross valid
 
 * Map reduce
 
-#+BEGIN_SRC bash`
+#+BEGIN_SRC bash
 grep something | wc -l * => grep is map wc -l is the reduce!
 #+END_SRC
 
@@ -109,7 +109,7 @@ Think of it as distributed database table.
 
 **** Read json element
 
-```scala
+#+BEGIN_SRC scala
 object SparkDFOnlineJson extends App {
  
   override def main(args: Array[String]): Unit = {
@@ -134,7 +134,7 @@ object SparkDFOnlineJson extends App {
     jsonExplodedDF.select($"Aggregated", $"ConversionType", $"prices".getItem("close")).show(10) // Then getItem instead of explode to objects!!
   }
 }
- 
+
 // +----------+--------------+--------------------+-----------------+--------+----------+----------+----+
 // |Aggregated|ConversionType|                Data|FirstValueInArray|Response|  TimeFrom|    TimeTo|Type|
 // +----------+--------------+--------------------+-----------------+--------+----------+----------+----+
@@ -205,7 +205,7 @@ object SparkDFOnlineJson extends App {
 // df: org.apache.spark.sql.DataFrame = [Aggregated: boolean, ConversionType: struct<conversionSymbol: string, type: string> ... 6 more fields]
 // jsonExplodedDF: org.apache.spark.sql.DataFrame = [Aggregated: boolean, ConversionType: struct<conversionSymbol: string, type: string> ... 1 more field]
 
-```
+#+END_SRC
 
 ** Fast
 
@@ -224,16 +224,16 @@ object SparkDFOnlineJson extends App {
 
 ** Hdfs
 
-```scala
+#+BEGIN_SRC scala
 val textFile = sc.textFile("hdfs://localhost:9000/user/hdfs/somefile.txt")
 txtFile.count
-```
+#+END_SRC
 
 * Algorithms
 
 ** Gradiant Descent
 
-almost every machine learning algorithm uses optimisation at it's core, optimising the target function.  Local minimum.  start with 0 `coefficient = 0.0`.  `cost = evaluate(f(coefficient))`.  Update coefficient downhill with derivative.  `coefficient = coefficient - (alpha * delta)`.  alpha learning parameter.
+Almost every machine learning algorithm uses optimisation at it's core, optimising the target function.  Local minimum.  start with 0 `coefficient = 0.0`.  `cost = evaluate(f(coefficient))`.  Update coefficient downhill with derivative.  `coefficient = coefficient - (alpha * delta)`.  alpha learning parameter.
 
 *** Stochastic Gradiant Descent
 
@@ -241,11 +241,11 @@ Have large amounts of data, update to coefficients is for each training instance
 
 * Hadoop
 
-** install
+** Install
 
-in general for hadoop, hive, ping installations you download the tar.gz, set environment variables for its home, and add folders in hdfs if needed.
+In general for hadoop, hive, ping installations you download the tar.gz, set environment variables for its home, and add folders in hdfs if needed.
 
-*** from source
+*** From source
 
 https://www.safaribooksonline.com/library/view/hadoop-and-spark/9780134770871/HASF_01_02_02_01.html
 extract hadoop tar.gz, make sure JAVA_HOME in path, HADOOP_HOME configured, add yarn, hdfs, mapred users, make directories: /var/data/hadoop/hadfs/[nn,snn], log directory,
@@ -258,25 +258,25 @@ fs.default.name: hdfs://localhsot:9000 *=> set the hdfs port.
 
 hdfs parameters, dfs.replication: 1, dfs. directory...
 
-*** format hdfs
+*** Format hdfs
 
-```bash
+#+BEGIN_SRC bash
 su - hdfs
 cd /opt/hadoop-2.8.1/bin
 ./hdfs namenode -format
-```
+#+END_SRC
 
-*** start
+*** Start
 
-```bash
+#+BEGIN_SRC bash
 cd /opt/hadoop-2.8.1/sbin
 ./hadoop-daemon.sh start namenode
 ./hadoop-daemon.sh start secondarynamenode
 ./hadoop-daemon.sh start datanode
 jps * => java processes status the above are all java processes.
-```
+#+END_SRC
 
-*** create hdfs folders
+*** Create hdfs folders
 
 hdfs dfs -mkdir -p /mr-history/tmp /mr-history/done chown to yarn:hadoop
 
@@ -642,13 +642,17 @@ then add /Users/tomer.bendavid/.local/bin to PATH on bash_profile
 ```
 
 * python
+|----------------------------------------+-----------------|
 | command                                | description     |
+|----------------------------------------+-----------------|
 | ~conda create --name testenv~          |                 |
 | ~conda activate testenv~               |                 |
 | ~conda env list~                       |                 |
 | ~conda installs spyder~                |                 |
+| ~conda activate testenv~               |                 |
 | ~conda install -c conda-forge pyspark~ | install pyspark |
 |                                        |                 |
+|----------------------------------------+-----------------|
 ** urllib2
 
 *** getfile
