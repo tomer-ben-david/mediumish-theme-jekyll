@@ -4,6 +4,7 @@ date:   2018-03-13 05:18:00
 categories: db
 permalink: git-primer
 comments: true
+image: https://upload.wikimedia.org/wikipedia/commons/3/3f/Git_icon.svg
 ---
 
 1.  [Concepts](#orgbece9ad)
