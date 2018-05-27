@@ -7,6 +7,7 @@ comments: true
 image: https://upload.wikimedia.org/wikipedia/commons/3/3f/Git_icon.svg
 ---
 
+
 1.  [Concepts](#orgbece9ad)
     1.  [Cache eq Index eq Staged](#orgefb6777)
 2.  [Configurations](#org51ce4a2)
