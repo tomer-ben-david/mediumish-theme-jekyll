@@ -30,9 +30,14 @@
 a way to integrate two branches instead of merge. instead of a branch - straight line, appends your commits to like the master branch.
 
 * git remote
-| command                                    | description          |
-| ~git remote show upstream~                 | Show remote branches |
-| ~git checkout -b upstream1.3 upstream/1.3~ | Checkout remote branch |
+|-----------------------------------------------------------+---------------------------------------|
+| command                                                   | description                           |
+|-----------------------------------------------------------+---------------------------------------|
+| ~git remote show upstream~                                | Show remote branches                  |
+| ~git checkout -b upstream1.3 upstream/1.3~                | Checkout remote branch                |
+| ~git remote -vv~                                          | Show branches remotes                 |
+| ~git branch mybranch --set-upstream-to origin/branch_name~ | update the remote of branch to origin |
+|-----------------------------------------------------------+---------------------------------------|
 ** git push
 |----------------------------------------------------------------------------------------------------+-------------------|
 | command                                                                                            | description       |
