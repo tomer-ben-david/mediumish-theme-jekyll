@@ -2,15 +2,22 @@
 
 * CS Patterns
 
-| Item           | Details                                  |
-| -------------- | ---------------------------------------- |
-| Ascii          | `[a-z]: [65,90], [A-Z]: [97-122], Space: [32]` |
-|                |                                          |
-| Java           |                                          |
-| is char letter | Character.isLetter(c)                    |
-| Split to works | String.split(" ")                        |
-|                |                                          |
-
+|------------------------------------------------------------------------+------------------------|
+| Details                                                                | Item                   |
+|------------------------------------------------------------------------+------------------------|
+| ~[a-z]: [65,90], [A-Z]: [97-122], Space: [32]~                         | Ascii                  |
+|                                                                        |                        |
+|                                                                        | Java                   |
+| ~Character.isLetter(c)~                                                | is char letter         |
+| ~String.split(" ")~                                                    | Split to works         |
+|                                                                        |                        |
+| ~Arrays.toString(new int[] {1,2,})~                                    | Print Array            |
+| ~Arrays.deepToString(…)~                                               | Print 2 dim array      |
+| ~Arrays.sort(arr)~                                                     | Sort Array             |
+| ~int[][] my2dimarr = new int[3][3]~                                    | Initialize 2 dim array |
+| ~PriorityQueue<Integer> q = new PriorityQueue<>(); q.add(2); q.poll()~ | Heap PriorityQueue     |
+|                                                                        |                        |
+|------------------------------------------------------------------------+------------------------|
 
 
 1. **Brute force**
@@ -34,19 +41,6 @@
 Impossible to solve, too many options, you need to turn the input data structure into the dream data structure that would help you resolve the question.  As you do it one time, precalc, and then for each test function you just run on the new data structure.
 
 * Coding Patterns
-
-| Task                     | Code                                                         |
-| ------------------------ | ------------------------------------------------------------ |
-| **Arrays**               |                                                              |
-| print array              | `Arrays.toString(new int[] {1,2,})`                          |
-| print 2 dim array        | `Arrays.deepToString(…)`                                     |
-| Sort array               | `Arrays.sort(arr)`                                           |
-| Initialize two dim array | `int[][] my2dimarr = new int[3][3]`                          |
-| **Heap**                 |                                                              |
-| PriorityQueue            | `PriorityQueue<Integer> q = new PriorityQueue<>(); q.add(2); q.poll()` |
-|                          |                                                              |
-
-
 
 1. Use **`PriorityQueue`** instead of Max/Min heap!!!! This will save you a huge load of time as you need a heap in rather many of the questions.
 2. Use `Arrays.binarySearch` - to find!!
