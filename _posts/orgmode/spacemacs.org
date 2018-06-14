@@ -4,7 +4,60 @@
 ** Installation 
    1. `brew cask install basictex` - so can export presentations.
    ~dotspacemacs-additional-packages '(vimish-fold htmlize)~ - Add packages to install on startup. 
-** Org-Mode
+** OrgMode
+
+|------------+---------------------|
+| item       | shortcut            |
+|------------+---------------------|
+| ~S-M-LEFT~ | Table Delete column |
+|------------+---------------------|
+
+*** Organization
+**** M-LEFT/RIGHT: Move item to left or right child parent.
+
+
+ * OrgMode
+  ** Links
+  *** Backspace - present internals of link
+  [[http://google.com][some googlew]]
+**** S-TAB : Collapse Expand All. 
+*** Tables 
+**** Insert: first write the below then | - TAB, click tab after each row will sort it out. 
+| Some        | Some        |
+| -           | sdkfjsk     |
+| sldkjflksdj | sdlfkjsldfj |
+|             |             |
+***** aslfjlksjf 
+
+Table with sum with column name x
+
+| task       | num |
+| dothis     |   1 |
+| dothat     |   0 |
+| do this    |   4 |
+| lskjfklsjd |   1 |
+| sum        |   2 |
+| sum        |   8 |
+| ^          |   x |
+|------------+-----|
+#+TBLFM: $x=vsum(@2..@-1)
+C-c C-c to recalculate sum
+
+
+*** Links
+**** C-c C-l: Create link 
+**** C-c C-o: Open link 
+**** Backspace: present underlying link 
+**** sdjfslkfj 
+**** to do to do this. 
+*** Source code 
+#+BEGIN_SRC scala
+def a = 2
+#+END_SRC
+*** Todo
+**** TODO this is todo item. C-c C-t change state.
+**** Add time date: C-c C-d then S-RIGHT/LEFT 
+**** Archive stuff. 
 ** Code
    | Key      | Function    |
    | ~<s TAB~ | Insert Code |
@@ -15,7 +68,6 @@
 |--------------+----------|
 | Archive Task | ~C-c $~  |
 |--------------+----------|
-
 ** Get Help
    1. SPC h d f user config
 ** Basic
@@ -55,37 +107,6 @@ for i in range(100):
    1. ~C-g~ - Escape / Quit
 ** View
    1. `SPC z x` +- # => zoom in out
-** OrgMode
-*** Organization
-**** M-LEFT/RIGHT: Move item to left or right child parent.
-
-
- * OrgMode
-  ** Links
-  *** Backspace - present internals of link
-  [[http://google.com][some googlew]]
-**** S-TAB : Collapse Expand All. 
-*** Tables 
-**** Insert: first write the below then | - TAB, click tab after each row will sort it out. 
-| Some        | Some        |
-| -           | sdkfjsk     |
-| sldkjflksdj | sdlfkjsldfj |
-|             |             |
-***** aslfjlksjf 
-*** Links
-**** C-c C-l: Create link 
-**** C-c C-o: Open link 
-**** Backspace: present underlying link 
-**** sdjfslkfj 
-**** to do to do this. 
-*** Source code 
-#+BEGIN_SRC scala
-def a = 2
-#+END_SRC
-*** Todo
-**** TODO this is todo item. C-c C-t change state.
-**** Add time date: C-c C-d then S-RIGHT/LEFT 
-**** Archive stuff. 
 ** Packages
    1. `M-x package-install ox-gfm`
 ** Export 

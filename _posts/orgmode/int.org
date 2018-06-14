@@ -343,6 +343,12 @@ release process from data scientists to production
 **** measure effectiveness
 
 effectiveness of models are they good?
+* Scala
+|---------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------|
+| code                                                                                              | desc                                                                    |
+|---------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------|
+| ~def wrapCodeWithLog(blockOfCode: () => String): () => String = log.info("before");blockOfCode()~ | function that wraps block of code with logging, just wraps does not run |
 * Status
 ** TODO quick sort [[https://repl.it/@TomerBen1/KLargestElement][Quick Sort Code]]
 ** TODO [[http://www.ardendertat.com/2011/10/27/programming-interview-questions-10-kth-largest-element-in-array/][Arden K Largest Element]]
+

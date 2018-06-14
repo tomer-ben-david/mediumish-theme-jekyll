@@ -16,3 +16,7 @@
 |        |                          |
 * Shell
    ~grep -B 1~ - grep results one line before.
+* Docker
+** Docker Swarm
+*** Local in mac
+    http://callistaenterprise.se/blogg/teknik/2017/12/18/docker-in-swarm-mode-on-docker-in-docker/

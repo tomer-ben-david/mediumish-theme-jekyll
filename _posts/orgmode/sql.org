@@ -6,6 +6,11 @@
    1. Always give tables names.
    1. Treat subqueries as functions you call them and they return values.
 
+| SQL                   | Meaning |
+| ~SELECT x > avg(col)~ |         |
+| ~SELECT f.* FROM film f WHERE f.replacement_cost > (SELECT AVG(f.replacement_cost) FROM film f2)~ | Filter without multiple where queries |
+| ~
+
 * Select
    1. Alias
 
@@ -95,6 +100,14 @@ select * from t1;
 #+END_SRC
 
 -- you can do everything with these tables, join, ...
+
+* Couchbase
+
+|----------------------------------------------------------------------------------+-----------------|
+| Item                                                                             | Description     |
+|----------------------------------------------------------------------------------+-----------------|
+| ~SELECT META(mybucket).id FROM diy WHERE META(mybucket).id LIKE "MyKeyPrefix%";~ | Search for keys |
+|----------------------------------------------------------------------------------+-----------------|
 
 * Resources
 ** Safari sql course
