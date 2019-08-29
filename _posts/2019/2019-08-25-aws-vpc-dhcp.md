@@ -12,7 +12,7 @@ image: https://oer.gitlab.io/DS/figures/Internet/Internet_of_Things.jpg
 
 ## What is DHCP
 
-DHCP is a pool or a range of addresses, which then devices receive.
+DHCP servers dynamically assigns an IP address and other network configuration parameters to each device on a network so they can communicate with other IP networks
 
 To get to DHCP in your VPC you of course first click VPC in AWS console.
 
