@@ -1,6 +1,6 @@
 ---
-title:  "AWS Networking DHCP and VPC"
-date:   2019-08-25 05:18:00
+title: "AWS Networking DHCP and VPC"
+date: 2019-08-25 05:18:00
 subtitle: "AWS Networking DHCP and VPC"
 categories: dev
 permalink: aws-networking-vpc-dhcp
@@ -12,15 +12,15 @@ image: https://oer.gitlab.io/DS/figures/Internet/Internet_of_Things.jpg
 
 ## What is DHCP
 
-DHCP is a pool or a range of addresses, which then devices receive. 
+DHCP is a pool or a range of addresses, which then devices receive.
 
-To get to DHCP in your VPC you ofcourse first click VPC in aws console
+To get to DHCP in your VPC you of course first click VPC in AWS console.
 
 ![Click VPC](https://i.imgur.com/ULYU3uE.png)
 
 ## DHCP Options Set
 
-You can set options in AWS for which address from the pool devices would get.  So in AWS you can set the options such as DNS NTP NetBios servers - these are the options that devices would once they connect and get a new ip from your DHCP service this is called `DHCP options set`.
+You can set options in AWS for which address from the pool devices would get. So in AWS you can set the options such as DNS NTP NetBios servers — these are the options that devices would once they connect and get a new ip from your DHCP service this is called 'DHCP options set'.
 
 ## Click DHCP Option Set
 
@@ -34,18 +34,18 @@ DHCP option set is actually configuration params related to how to setup address
 
 ## Give it a name
 
-These are the options that new devices would get they would get the domain name the dns server ntp server etc.
+These are the options that new devices would get they would get the domain name the DNS server NTP server etc.
 
-- Give the new dhcp option set a name.
+- Give the new DHCP option set a name.
 - Give it a domain name
-- Provide the dns server can do it later.
-- NetBIOS - do not need to set it.
+- Provide the DNS server can do it later.
+- NetBIOS — do not need to set it.
 
-Then just click create
+Then just click create.
 
 ![](https://i.imgur.com/2GDOKcQ.png)
 
-And ! DHCP option set has been created
+And ! DHCP option set has been created.
 
 ## Subnets and DHCP Options Set
 
@@ -53,6 +53,6 @@ For each subnet you might need to create DHCP options.
 
 ## Summary
 
-For each subnet you might need to cretate dhcp options set.  DHCP options set allow you to configure the options clients get when they connect and get a new IP such as domain name, ntp server name etc.
+For each subnet you might need to create DHCP options set. DHCP options set allow you to configure the options clients get when they connect and get a new IP such as domain name, NTP server name etc.
 
-`DHCP` itself is used to provide dynamic addresses where required within your `VPC`
+'DHCP' itself is used to provide dynamic addresses where required within your 'VPC'
