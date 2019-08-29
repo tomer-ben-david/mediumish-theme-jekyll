@@ -6,7 +6,7 @@ categories: dev
 permalink: aws-networking-vpc-dhcp
 comments: true
 featured: true
-image: https://media.giphy.com/medzia/YN6qUXj4HdXoY/giphy.gif
+image: https://oer.gitlab.io/DS/figures/Internet/Internet_of_Things.jpg
 
 ---
 
