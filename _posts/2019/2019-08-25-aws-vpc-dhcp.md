@@ -1,6 +1,6 @@
 ---
 title:  "AWS Networking DHCP and VPC"
-date:   2018-03-13 05:18:00
+date:   2019-08-25 05:18:00
 subtitle: "AWS Networking DHCP and VPC"
 categories: dev
 permalink: aws-networking-vpc-dhcp
